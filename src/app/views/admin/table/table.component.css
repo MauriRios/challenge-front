@@ -1,0 +1,14 @@
+.full-width-table {
+  width: 100%;
+}
+
+.mat-elevation-z8{
+  margin: 15px;
+}
+
+.title-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
