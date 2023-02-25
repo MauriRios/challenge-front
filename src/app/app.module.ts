@@ -16,12 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { PurchasesDialogComponent } from './views/admin/table/purchases-dialog/purchases-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    TableComponent
+    TableComponent,
+    PurchasesDialogComponent
   ],
   imports: [
     BrowserModule,

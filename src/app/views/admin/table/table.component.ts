@@ -1,12 +1,11 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Customer } from 'src/app/models/customer.model';
-import { CustomerWithoutPurchases } from 'src/app/models/customerWithoutPurchases.model';
-import { SaleDTO } from 'src/app/models/saleDTO.model';
 import { CustomerDataService } from 'src/app/services/customer-data.service';
+import { PurchasesDialogComponent } from './purchases-dialog/purchases-dialog.component';
 
 @Component({
   selector: 'app-table',
@@ -17,23 +16,22 @@ import { CustomerDataService } from 'src/app/services/customer-data.service';
 
 export class TableComponent implements AfterViewInit, OnInit {
   
-  displayedColumns = ['ID', 'Nombre', "Apellido", "DNI", "Direccion", "Telefono", "Compras"];
-  dataSource = new MatTableDataSource<Customer>();
+  displayedColumns: string [] = ['ID', 'Nombre', "Apellido", "DNI", "Direccion", "Telefono", "Compras"];
+  dataSource = new MatTableDataSource<any>();
 
   customers: Customer[] = [];
-  customerPurchases: SaleDTO[]=[];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<Customer>;
+
   constructor(
-    private customerDataService : CustomerDataService,) {
+    private customerDataService : CustomerDataService,
+    public dialog: MatDialog) {
       this.getCustomers();
-      this.getPurchasesList();
   }
 
+
   ngOnInit(){
-    this.getPurchasesList();
   }
 
   ngAfterViewInit(): void {
@@ -45,8 +43,8 @@ export class TableComponent implements AfterViewInit, OnInit {
     this.customerDataService.getCustomers().subscribe(
       data => { 
         this.customers = data;
-        this.customerPurchases = data.flatMap(data => this.customerPurchases = data.purchases);
-        console.log(this.customerPurchases)
+        // this.customerPurchases = data.flatMap(data => this.customerPurchases = data.purchases);
+        // console.log(this.customerPurchases)
         // const sales: SaleDTO[] = customers.flatMap(customer => customer.purchases);
 
         this.dataSource.data = data;
@@ -56,14 +54,22 @@ export class TableComponent implements AfterViewInit, OnInit {
       });
   }
 
-  getPurchasesList(){
-      
-      this.customers.forEach(customer => { customer.purchases = this.customerPurchases
-      console.log(this.customerPurchases);
-    });
+  // openDialog() {
+  //   const dialogRef = this.dialog.open(PurchasesDialogComponent);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result: ${result}`);
+  //   });
+  // }
 
+  openDialog(customer: Customer): void {
+    const dialogRef = this.dialog.open(PurchasesDialogComponent);
+    localStorage.setItem("idCustomer", customer.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
     
   }
+
 
 
 }
