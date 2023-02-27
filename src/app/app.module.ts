@@ -7,8 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 
 //components
-import { NavigationComponent } from './views/admin/navigation/navigation.component';
-import { TableComponent } from './views/admin/table/table.component';
+import { NavigationComponent } from './views/admin/navigation.component';
 
 //angular material
 import { AngularMaterialModule } from './shared/angular-material/angular-material.module';
@@ -16,25 +15,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { PurchasesDialogComponent } from './views/admin/table/purchases-dialog/purchases-dialog.component';
+import { PurchasesDialogComponent } from './views/admin/customer-table/purchases-dialog/purchases-dialog.component';
+import { CustomerTableComponent } from './views/admin/customer-table/customer-table.component';
+import { ProviderTableComponent } from './views/admin/provider-table/provider-table.component';
+import { ViewsModule } from './views/views.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
-    TableComponent,
-    PurchasesDialogComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    LayoutModule,
-    AngularMaterialModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    ViewsModule,
+    AppRoutingModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

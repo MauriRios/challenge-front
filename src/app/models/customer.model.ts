@@ -1,6 +1,6 @@
 import { SaleDTO } from "./saleDTO.model";
 
-export interface Customer {
+export class Customer {
 
     id: number;
     name: string;

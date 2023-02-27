@@ -10,10 +10,11 @@ import { CustomerDataService } from 'src/app/services/customer-data.service';
 })
 export class PurchasesDialogComponent implements OnInit {
 
-  customer!: Customer;
+  customer: Customer = new Customer();
   displayedColumns = ['productName', 'description', 'quantity', 'price'];
 
   constructor(private customerDataService : CustomerDataService,
+
     ) {
       
     }

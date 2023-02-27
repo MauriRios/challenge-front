@@ -8,13 +8,13 @@ import { CustomerDataService } from 'src/app/services/customer-data.service';
 import { PurchasesDialogComponent } from './purchases-dialog/purchases-dialog.component';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: 'app-customer-table',
+  templateUrl: './customer-table.component.html',
+  styleUrls: ['./customer-table.component.css']
 })
 
 
-export class TableComponent implements AfterViewInit, OnInit {
+export class CustomerTableComponent implements AfterViewInit, OnInit {
   
   displayedColumns: string [] = ['ID', 'Nombre', "Apellido", "DNI", "Direccion", "Telefono", "Compras"];
   dataSource = new MatTableDataSource<any>();
