@@ -16,6 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SaleTableComponent } from './sale-table/sale-table.component';
+import { ProductsListDialogComponent } from './provider-table/products-list-dialog/products-list-dialog.component';
 
 
 
@@ -26,7 +27,8 @@ import { SaleTableComponent } from './sale-table/sale-table.component';
     PurchasesDialogComponent,
     ProviderTableComponent,
     ProductTableComponent,
-    SaleTableComponent
+    SaleTableComponent,
+    ProductsListDialogComponent
   ],  
   exports: [
     NavigationComponent

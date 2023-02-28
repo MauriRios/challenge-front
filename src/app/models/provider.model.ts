@@ -2,6 +2,9 @@ import { Product } from "./product.model";
 import { Sale } from "./sale.model";
 
 export class Provider {
+    slice() {
+      throw new Error('Method not implemented.');
+    }
 
     id: number;
     providerName: string;
@@ -10,6 +13,5 @@ export class Provider {
     phone: number;
     address: string;
     status: boolean;
-    products: Product[];
-    saleList: Sale[];
+    productList: Product[];
 }

@@ -1,8 +1,11 @@
-import { AfterViewInit, Component, Provider, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Provider } from 'src/app/models/provider.model';
 import { ProviderDataService } from 'src/app/services/provider-data.service';
+import { ProductsListDialogComponent } from './products-list-dialog/products-list-dialog.component';
 
 @Component({
   selector: 'app-provider-table',
@@ -17,12 +20,11 @@ export class ProviderTableComponent implements AfterViewInit {
   providers: Provider[] = [];
   dataSource = new MatTableDataSource<any>();
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'lastName', 'cuit', 'phone', 'address', 'status', 'products', 'saleList'];
 
   constructor(
     private providerDataService : ProviderDataService,
-    
+    public dialog: MatDialog
     ) {
   }
 
@@ -36,13 +38,19 @@ export class ProviderTableComponent implements AfterViewInit {
     this.providerDataService.getProviders().subscribe(
       data => { 
         this.providers = data;
-        // this.customerPurchases = data.flatMap(data => this.customerPurchases = data.purchases);
-        // console.log(this.customerPurchases)
-        // const sales: SaleDTO[] = customers.flatMap(customer => customer.purchases);
         this.dataSource.data = data;
         this.dataSource.paginator! = this.paginator;
         this.dataSource.sort! = this.sort;
-        console.log(data)
       });
   }
+
+  openDialog(provider: Provider): void {
+    const dialogRef = this.dialog.open(ProductsListDialogComponent);
+    localStorage.setItem("idProvider", provider.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
+  }
+
 }

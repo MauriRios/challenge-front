@@ -1,0 +1,59 @@
+<mat-dialog-content class="mat-typography">
+    <h3>Detalles de Productos</h3>
+    
+    <h2>Proveedor</h2>
+    <p><b>Nombre:</b> {{provider.providerName}}</p>
+    <p><b>Apellido:</b> {{provider.providerLastName}}</p>
+    <p><b>CUIT:</b> {{provider.cuit}}</p>
+    <p><b>Teléfono:</b> {{provider.phone}}</p>
+    <p><b>Dirección:</b> {{provider.address}}</p>
+
+<table matSort (matSortChange)="sortData($event)" *ngIf="productList.length > 0">
+    <tr>
+        <th mat-sort-header="id">id</th>
+        <th mat-sort-header="name">Nombre</th>
+        <th mat-sort-header="description">Descripción</th>
+        <th mat-sort-header="price">Precio</th>
+        <th mat-sort-header="carbs">Stock</th>
+        <th mat-sort-header="status">Stado</th>
+    </tr>
+    
+    <tr *ngFor="let product of sortedData">
+        <td>{{product.id}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.stock}}</td>
+        <td>{{product.status}}</td>
+    </tr>
+</table>
+
+<div *ngIf="productList.length == 0">
+    <p>La lista de productos se está cargando...</p>
+</div>
+</mat-dialog-content>
+
+<!-- <mat-dialog-content class="mat-typography">
+    <h3>Detalles de Productos</h3>
+    
+    <h2>Proveedor</h2>
+    <p><b>Nombre:</b> {{provider.providerName}}</p>
+    <p><b>Apellido:</b> {{provider.providerLastName}}</p>
+    <p><b>CUIT:</b> {{provider.cuit}}</p>
+    <p><b>Teléfono:</b> {{provider.phone}}</p>
+    <p><b>Dirección:</b> {{provider.address}}</p>
+    
+    <h2>Lista de Productos</h2>
+    <ng-container *ngIf="provider.productList && provider.productList.length > 0; else noProducts">
+      <div *ngFor="let product of provider.productList">
+        <p><b>Producto # {{product.id}}</b> - Nombre: {{product.name}} - Descripción: {{product.description}} Total: ${{product.price}} - Stock: {{product.stock}} </p>
+    </div>
+</ng-container>
+    
+    <ng-template #noProducts>
+    <p>Este proveedor no tiene productos activos en este momento.</p>
+    </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions> -->
