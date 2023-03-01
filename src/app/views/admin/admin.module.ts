@@ -17,6 +17,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { SaleTableComponent } from './sale-table/sale-table.component';
 import { ProductsListDialogComponent } from './provider-table/products-list-dialog/products-list-dialog.component';
+import { ProviderEditComponent } from './provider-table/provider-edit/provider-edit.component';
+import { ProviderDeleteComponent } from './provider-table/provider-delete/provider-delete.component';
+import { ProviderCreateComponent } from './provider-table/provider-create/provider-create.component';
 
 
 
@@ -28,7 +31,10 @@ import { ProductsListDialogComponent } from './provider-table/products-list-dial
     ProviderTableComponent,
     ProductTableComponent,
     SaleTableComponent,
-    ProductsListDialogComponent
+    ProductsListDialogComponent,
+    ProviderEditComponent,
+    ProviderDeleteComponent,
+    ProviderCreateComponent
   ],  
   exports: [
     NavigationComponent

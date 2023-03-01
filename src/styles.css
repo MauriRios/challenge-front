@@ -4,6 +4,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
+/* tablas */
+
 .full-width-table {
     width: 100%;
 }
@@ -17,4 +19,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+}
+
+/*forms*/
+
+form{
+    display: block;
+    flex-direction: row;
+}
+
+
+mat-form-field{
+    width: 100%;
+}
+
+.error{
+    color: red;
+}
+
+.edit-buttons{
+    display: flex;
+    justify-content: end;
 }
