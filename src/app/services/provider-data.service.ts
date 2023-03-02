@@ -15,8 +15,29 @@ export class ProviderDataService {
     return this.http.get<Provider[]>(environment.URL + 'proveedor/traer');
   }
 
-  getProviderById(id: number): Observable<Provider> {
+  public getProviderById(id: number): Observable<Provider> {
     return this.http.get<Provider>(environment.URL + 'proveedor/traer/'+id);
   }
+
+  public createProvider(provider: Provider): Observable<Provider> {
+    return this.http.post<Provider>(environment.URL + 'proveedor/crear', provider);
+  }
+
+  public updateProduct(id: number , provider: Provider): Observable<Provider> {
+    return this.http.put<Provider>(environment.URL + 'proveedor/editar/'+ id,  provider);
+  }
+
+  public activateProvider(id: number): Observable<Provider> {
+    return this.http.post<Provider>(environment.URL + 'proveedor/activar/', + id);
+  }
+
+  public deactivateProvider(id: number): Observable<Provider> {
+    return this.http.post<Provider>(environment.URL + 'proveedor/desactivar/', + id);
+  }
+
+  public deleteProvider(id: number): Observable<Provider> {
+    return this.http.delete<Provider>(environment.URL + 'proveedor/borrar/' + id);
+  }
+  
   
 }

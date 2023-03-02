@@ -1,34 +1,34 @@
 
-<h2 mat-dialog-title>Editar Proveedor {{provider.id}}</h2>
 
 <form [formGroup]="editForm">
+    <h2 mat-dialog-title>Editar Proveedor {{provider.id}}</h2>
 
     <mat-form-field appearance="outline" >
         <mat-label>Nombre</mat-label>
-        <input matInput class="form-group" formControlName="providerName" name="providerName" required>
+        <input matInput type="text" class="form-group" formControlName="providerName" name="providerName" required>
     </mat-form-field>
-    <div  *ngIf="brandField!.errors && (brandField!.dirty || brandField!.touched)">
-        <div class="error mb-4" *ngIf="brandField!.hasError('required')">
+    <div  *ngIf="providerNameField!.errors && (providerNameField!.dirty ||providerNameField!.touched)">
+        <div class="error mb-4" *ngIf="providerNameField!.hasError('required')">
           * El campo Nombre es requerido
         </div>
     </div>
 
     <mat-form-field appearance="outline" >
         <mat-label>Apellido</mat-label>
-        <input matInput class="form-group" formControlName="providerLastName" name="providerLastName" required>
+        <input matInput type="text" class="form-group" formControlName="providerLastName" name="providerLastName" required>
     </mat-form-field>
-    <div  *ngIf="styleField!.errors && (styleField!.dirty || styleField!.touched)">
-        <div class="error mb-4" *ngIf="styleField!.hasError('required')">
+    <div  *ngIf="providerLastNameField!.errors && (providerLastNameField!.dirty || providerLastNameField!.touched)">
+        <div class="error mb-4" *ngIf="providerLastNameField!.hasError('required')">
           * El campo Apellido es requerido
         </div>
     </div>
 
     <mat-form-field appearance="outline" >
         <mat-label>CUIT</mat-label>
-        <input matInput class="form-group" formControlName="cuit" name="cuit" required>
+        <input matInput type="number" class="form-group" formControlName="cuit" name="cuit" required>
     </mat-form-field>
-    <div  *ngIf="volumeField!.errors && (volumeField!.dirty || volumeField!.touched)">
-        <div class="error mb-4" *ngIf="volumeField!.hasError('required')">
+    <div  *ngIf="cuitField!.errors && (cuitField!.dirty || cuitField!.touched)">
+        <div class="error mb-4" *ngIf="cuitField!.hasError('required')">
           * El campo CUIT es requerido
         </div>
     </div>
@@ -37,18 +37,18 @@
         <mat-label>Teléfono</mat-label>
         <input matInput type="number" class="form-group" formControlName="phone" name="phone" required>
     </mat-form-field>
-    <div  *ngIf="priceField!.errors && (priceField!.dirty || priceField!.touched)">
-        <div class="error mb-4" *ngIf="priceField!.hasError('required')">
+    <div  *ngIf="phoneField!.errors && (phoneField!.dirty || phoneField!.touched)">
+        <div class="error mb-4" *ngIf="phoneField!.hasError('required')">
           * El Teléfono es requerido
         </div>
     </div>
 
     <mat-form-field appearance="outline" >
         <mat-label>Dirección</mat-label>
-        <input type="number" class="form-group" matInput formControlName="address" name="address" required>
+        <input type="text" class="form-group" matInput formControlName="address" name="address" required>
     </mat-form-field>
-    <div  *ngIf="stockField!.errors && (stockField!.dirty || stockField!.touched)">
-        <div class="error mb-4" *ngIf="stockField!.hasError('required')">
+    <div  *ngIf="addressField!.errors && (addressField!.dirty || addressField!.touched)">
+        <div class="error mb-4" *ngIf="addressField!.hasError('required')">
           * El campo Dirección es requerido
         </div>
 
@@ -58,6 +58,6 @@
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cerrar</button>
-    <button mat-button mat-dialog-close cdkFocusInitial>Editar</button>
+    <button mat-button mat-dialog-close (click)="updateProvider()">Editar</button>
 </mat-dialog-actions>
 
