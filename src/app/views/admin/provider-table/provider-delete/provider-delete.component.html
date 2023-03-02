@@ -1,8 +1,8 @@
-<!-- <h1 mat-dialog-title class="title" >Eliminar Producto</h1>
+<h1 mat-dialog-title class="title" >Eliminar Proveedor</h1>
 <div mat-dialog-content>
-<p>¿Estás seguro que desea eliminar este producto "{{product.brand!}} {{product.style!}} {{product.volume!}}" ?</p>
+¿Estás seguro que desea eliminar este proveedor "{{provider.id}} {{provider.providerName}} {{provider.providerLastName}}"?
 </div>
-<div mat-dialog-actions class="buttons">
-<button class="btn btn-primary" (click)="onNoClick()">Cancelar</button>
-<button class="btn btn-danger" (click)="delete()" cdkFocusInitial>Aceptar</button>
-</div> -->
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+        <button mat-button mat-dialog-close cdkFocusInitial (click)="deleteProvider()">Aceptar</button>
+    </mat-dialog-actions>

@@ -1,1 +1,62 @@
-<p>provider-create works!</p>
+
+<form [formGroup]="addForm">
+    <h2 mat-dialog-title>Agregar Proveedor</h2>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" class="form-group" formControlName="providerName" name="providerName" required>
+    </mat-form-field>
+    <div  *ngIf="providerNameField!.errors && (providerNameField!.dirty ||providerNameField!.touched)">
+        <div class="error mb-4" *ngIf="providerNameField!.hasError('required')">
+          * El campo Nombre es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Apellido</mat-label>
+        <input matInput type="text" class="form-group" formControlName="providerLastName" name="providerLastName" required>
+    </mat-form-field>
+    <div  *ngIf="providerLastNameField!.errors && (providerLastNameField!.dirty || providerLastNameField!.touched)">
+        <div class="error mb-4" *ngIf="providerLastNameField!.hasError('required')">
+          * El campo Apellido es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>CUIT</mat-label>
+        <input matInput type="number" class="form-group" formControlName="cuit" name="cuit" required>
+    </mat-form-field>
+    <div  *ngIf="cuitField!.errors && (cuitField!.dirty || cuitField!.touched)">
+        <div class="error mb-4" *ngIf="cuitField!.hasError('required')">
+          * El campo CUIT es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Teléfono</mat-label>
+        <input matInput type="number" class="form-group" formControlName="phone" name="phone" required>
+    </mat-form-field>
+    <div  *ngIf="phoneField!.errors && (phoneField!.dirty || phoneField!.touched)">
+        <div class="error mb-4" *ngIf="phoneField!.hasError('required')">
+          * El Teléfono es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Dirección</mat-label>
+        <input type="text" class="form-group" matInput formControlName="address" name="address" required>
+    </mat-form-field>
+    <div  *ngIf="addressField!.errors && (addressField!.dirty || addressField!.touched)">
+        <div class="error mb-4" *ngIf="addressField!.hasError('required')">
+          * El campo Dirección es requerido
+        </div>
+
+    </div>
+
+</form>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="addProvider()">Editar</button>
+</mat-dialog-actions>
+

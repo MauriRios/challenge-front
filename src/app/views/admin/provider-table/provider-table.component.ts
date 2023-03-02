@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Provider } from 'src/app/models/provider.model';
 import { ProviderDataService } from 'src/app/services/provider-data.service';
 import { ProductsListDialogComponent } from './products-list-dialog/products-list-dialog.component';
+import { ProviderCreateComponent } from './provider-create/provider-create.component';
+import { ProviderDeleteComponent } from './provider-delete/provider-delete.component';
 import { ProviderEditComponent } from './provider-edit/provider-edit.component';
 
 @Component({
@@ -59,6 +61,27 @@ export class ProviderTableComponent implements AfterViewInit {
       width: '320px',
     });
     localStorage.setItem("idProvider", provider.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
+  }
+
+  openDialogDelete(provider: Provider): void {
+    const dialogRef = this.dialog.open(ProviderDeleteComponent, {
+      width: '320px',
+    });
+    localStorage.setItem("idProvider", provider.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
+  }
+
+  openDialogAdd(): void {
+    const dialogRef = this.dialog.open(ProviderCreateComponent, {
+      width: '320px',
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

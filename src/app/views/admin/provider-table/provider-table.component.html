@@ -1,8 +1,8 @@
 <div class="title-container">
-  <h1>Lista de Proveedores</h1>
+  <h1>Lista de Proveedores <button mat-icon-button matTooltip="Agregar" (click)="openDialogAdd()">
+    <mat-icon aria-hidden="false" aria-label="Example add icon">library_add</mat-icon>
+  </button></h1>
 </div>
-
-
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements">
     <!-- Id Column -->
@@ -44,22 +44,31 @@
 
     <ng-container matColumnDef="products">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Lista de Productos</th>
-      <td mat-cell *matCellDef="let provider"><button mat-raised-button color="primary" (click)="openDialog(provider)"><mat-icon >open_in_new</mat-icon></button></td>
+      <td mat-cell *matCellDef="let provider">
+        <button mat-icon-button matTooltip="Productos" (click)="openDialog(provider)">
+          <mat-icon >open_in_new</mat-icon></button>
+        </td>
     </ng-container>
 
     <ng-container matColumnDef="saleList">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Lista de Ventas</th>
-      <td mat-cell *matCellDef="let row">{{row.saleList}}</td>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button matTooltip="Ventas">
+          <mat-icon >open_in_new</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="acciones">
       <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let provider">
-      <a class="btn ">
-          <mat-icon aria-hidden="false" aria-label="Example edit icon" (click)="openDialogEdit(provider)">edit</mat-icon></a>
-      <a class="btn  " >
-          <mat-icon aria-hidden="false" aria-label="Example add icon">delete</mat-icon>
-      </a>
+        <button mat-icon-button matTooltip="Editar" (click)="openDialogEdit(provider)">
+          <mat-icon aria-hidden="false" aria-label="Example edit icon" >edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Eliminar" (click)="openDialogDelete(provider)">
+          <mat-icon aria-hidden="false" aria-label="Example add icon" >delete</mat-icon>
+        </button>
+    
       </td>
   </ng-container>
 
