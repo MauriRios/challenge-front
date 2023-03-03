@@ -20,6 +20,7 @@ import { ProductsListDialogComponent } from './provider-table/products-list-dial
 import { ProviderEditComponent } from './provider-table/provider-edit/provider-edit.component';
 import { ProviderDeleteComponent } from './provider-table/provider-delete/provider-delete.component';
 import { ProviderCreateComponent } from './provider-table/provider-create/provider-create.component';
+import { ProviderInfoDialogComponent } from './product-table/provider-info-dialog/provider-info-dialog.component';
 
 
 
@@ -34,7 +35,8 @@ import { ProviderCreateComponent } from './provider-table/provider-create/provid
     ProductsListDialogComponent,
     ProviderEditComponent,
     ProviderDeleteComponent,
-    ProviderCreateComponent
+    ProviderCreateComponent,
+    ProviderInfoDialogComponent
   ],  
   exports: [
     NavigationComponent

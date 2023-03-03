@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatCardLgImage } from '@angular/material/card';
 import { Sort } from '@angular/material/sort';
 import { Product } from 'src/app/models/product.model';
@@ -10,7 +10,7 @@ import { ProviderDataService } from 'src/app/services/provider-data.service';
   templateUrl: './products-list-dialog.component.html',
   styleUrls: ['./products-list-dialog.component.css']
 })
-export class ProductsListDialogComponent implements OnInit {
+export class ProductsListDialogComponent implements OnInit, AfterViewInit {
 
   productList: Product[] = [];
   provider: Provider = new Provider();
@@ -22,6 +22,9 @@ export class ProductsListDialogComponent implements OnInit {
   ngOnInit(): void {
     this.getProvider();
 
+  }
+  ngAfterViewInit(): void {
+    this.getProvider();
   }
 
   sortData(sort: Sort) {

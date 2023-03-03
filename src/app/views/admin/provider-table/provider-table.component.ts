@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -15,7 +15,7 @@ import { ProviderEditComponent } from './provider-edit/provider-edit.component';
   templateUrl: './provider-table.component.html',
   styleUrls: ['./provider-table.component.css']
 })
-export class ProviderTableComponent implements AfterViewInit {
+export class ProviderTableComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -31,8 +31,12 @@ export class ProviderTableComponent implements AfterViewInit {
     ) {
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.getProviders();
+  }
+
+  ngAfterViewInit(): void {
+    
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
