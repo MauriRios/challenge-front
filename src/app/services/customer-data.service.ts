@@ -15,8 +15,28 @@ export class CustomerDataService {
     return this.http.get<Customer[]>(environment.URL + 'cliente/traer');
   }
 
-  getCustomerById(id: number): Observable<Customer> {
+  public getCustomerById(id: number): Observable<Customer> {
     return this.http.get<Customer>(environment.URL + 'cliente/traer/'+id);
+  }
+  
+  public createCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(environment.URL + 'cliente/crear', customer);
+  }
+
+  public updateCustomer(id: number , customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(environment.URL + 'cliente/editar/'+ id,  customer);
+  }
+
+  public activateCustomer(id: number): Observable<Customer> {
+    return this.http.post<Customer>(environment.URL + 'cliente/activar/', + id);
+  }
+
+  public deactivateProvider(id: number): Observable<Customer> {
+    return this.http.post<Customer>(environment.URL + 'cliente/desactivar/', + id);
+  }
+
+  public deleteCustomer(id: number): Observable<Customer> {
+    return this.http.delete<Customer>(environment.URL + 'cliente/borrar/' + id);
   }
 
 

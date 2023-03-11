@@ -1,8 +1,12 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { SaleTableDataSource, SaleTableItem } from './sale-table-datasource';
+import { MatTableDataSource } from '@angular/material/table';
+import { Sale } from 'src/app/models/sale.model';
+import { SaleDataService } from 'src/app/services/sale-data.service';
+import { SaleCreateComponent } from './sale-create/sale-create.component';
+import { SaleListDialogComponent } from './sale-list-dialog/sale-list-dialog.component';
 
 @Component({
   selector: 'app-sale-table',
@@ -10,21 +14,57 @@ import { SaleTableDataSource, SaleTableItem } from './sale-table-datasource';
   styleUrls: ['./sale-table.component.css']
 })
 export class SaleTableComponent implements AfterViewInit {
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<SaleTableItem>;
-  dataSource: SaleTableDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  sales: Sale[] = [];
+  dataSource = new MatTableDataSource<any>();
 
-  constructor() {
-    this.dataSource = new SaleTableDataSource();
+  displayedColumns = ['id', 'providerId', 'customerId', 'date', 'quantity', 'totalPrice', 'products'];
+
+  constructor(
+    private saleDataService : SaleDataService,
+    public dialog: MatDialog
+    ) {
+  }
+
+  ngOnInit(): void {
+    this.getSales();
   }
 
   ngAfterViewInit(): void {
+    
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  }
+
+  getSales(): void {
+    this.saleDataService.getSales().subscribe(
+      data => { 
+        this.sales = data;
+        this.dataSource.data = data;
+        this.dataSource.paginator! = this.paginator;
+        this.dataSource.sort! = this.sort;
+      });
+  }
+
+  openDialog(sale: Sale): void {
+    const dialogRef = this.dialog.open(SaleListDialogComponent);
+    localStorage.setItem("idProvider", sale.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
+  }
+
+  openDialogAdd(): void {
+    const dialogRef = this.dialog.open(SaleCreateComponent, {
+      width: '320px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
   }
 }

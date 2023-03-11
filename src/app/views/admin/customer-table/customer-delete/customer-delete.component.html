@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="title" >Eliminar Proveedor</h1>
+<div mat-dialog-content>
+¿Estás seguro que desea eliminar este proveedor "{{customer.id}} {{customer.name}} {{customer.lastName}}"?
+</div>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+        <button mat-button mat-dialog-close cdkFocusInitial (click)="deleteCustomer()">Aceptar</button>
+    </mat-dialog-actions>

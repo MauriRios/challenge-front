@@ -1,34 +1,34 @@
 
-<form [formGroup]="addForm">
-    <h2 mat-dialog-title>Agregar Proveedor</h2>
+<form [formGroup]="editForm">
+    <h2 mat-dialog-title>Editar Cliente {{customer.id}}</h2>
 
     <mat-form-field appearance="outline" >
         <mat-label>Nombre</mat-label>
-        <input matInput type="text" class="form-group" formControlName="providerName" name="providerName" required>
+        <input matInput type="text" class="form-group" formControlName="name" name="name" required>
     </mat-form-field>
-    <div  *ngIf="providerNameField!.errors && (providerNameField!.dirty ||providerNameField!.touched)">
-        <div class="error mb-4" *ngIf="providerNameField!.hasError('required')">
+    <div  *ngIf="customerNameField!.errors && (customerNameField!.dirty ||customerNameField!.touched)">
+        <div class="error mb-4" *ngIf="customerNameField!.hasError('required')">
           * El campo Nombre es requerido
         </div>
     </div>
 
     <mat-form-field appearance="outline" >
         <mat-label>Apellido</mat-label>
-        <input matInput type="text" class="form-group" formControlName="providerLastName" name="providerLastName" required>
+        <input matInput type="text" class="form-group" formControlName="lastName" name="lastName" required>
     </mat-form-field>
-    <div  *ngIf="providerLastNameField!.errors && (providerLastNameField!.dirty || providerLastNameField!.touched)">
-        <div class="error mb-4" *ngIf="providerLastNameField!.hasError('required')">
+    <div  *ngIf="customerLastNameField!.errors && (customerLastNameField!.dirty || customerLastNameField!.touched)">
+        <div class="error mb-4" *ngIf="customerLastNameField!.hasError('required')">
           * El campo Apellido es requerido
         </div>
     </div>
 
     <mat-form-field appearance="outline" >
-        <mat-label>CUIT</mat-label>
-        <input matInput type="number" class="form-group" formControlName="cuit" name="cuit" required>
+        <mat-label>DNI</mat-label>
+        <input matInput type="number" class="form-group" formControlName="dni" name="dni" required>
     </mat-form-field>
-    <div  *ngIf="cuitField!.errors && (cuitField!.dirty || cuitField!.touched)">
-        <div class="error mb-4" *ngIf="cuitField!.hasError('required')">
-          * El campo CUIT es requerido
+    <div  *ngIf="dniField!.errors && (dniField!.dirty || dniField!.touched)">
+        <div class="error mb-4" *ngIf="dniField!.hasError('required')">
+          * El campo DNI es requerido
         </div>
     </div>
 
@@ -57,6 +57,5 @@
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cerrar</button>
-    <button mat-button mat-dialog-close cdkFocusInitial (click)="addProvider()">Crear</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="updateCustomer()">Editar</button>
 </mat-dialog-actions>
-

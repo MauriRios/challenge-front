@@ -9,6 +9,6 @@ export class Customer {
     phone: number;
     address: string;
     status: boolean;
-    purchases: SaleDTO[];
+    purchases?: SaleDTO[];
 
 }

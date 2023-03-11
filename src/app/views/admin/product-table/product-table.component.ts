@@ -8,6 +8,9 @@ import { ProductProviderDTO } from 'src/app/models/productProviderDTO';
 import { Provider } from 'src/app/models/provider.model';
 import { ProductDataService } from 'src/app/services/product-data.service';
 import { ProviderDataService } from 'src/app/services/provider-data.service';
+import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductDeleteComponent } from './product-delete/product-delete.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProviderInfoDialogComponent } from './provider-info-dialog/provider-info-dialog.component';
 
 @Component({
@@ -62,36 +65,36 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
     
   }
 
-  // openDialogEdit(provider: Provider): void {
-  //   const dialogRef = this.dialog.open(ProviderEditComponent, {
-  //     width: '320px',
-  //   });
-  //   localStorage.setItem("idProvider", provider.id!.toString());
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
+  openDialogEdit(provider: Provider): void {
+    const dialogRef = this.dialog.open(ProductEditComponent, {
+      width: '320px',
+    });
+    localStorage.setItem("idProvider", provider.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
     
-  // }
+  }
 
-  // openDialogDelete(provider: Provider): void {
-  //   const dialogRef = this.dialog.open(ProviderDeleteComponent, {
-  //     width: '320px',
-  //   });
-  //   localStorage.setItem("idProvider", provider.id!.toString());
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
+  openDialogDelete(provider: Provider): void {
+    const dialogRef = this.dialog.open(ProductDeleteComponent, {
+      width: '320px',
+    });
+    localStorage.setItem("idProvider", provider.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
     
-  // }
+  }
 
-  // openDialogAdd(): void {
-  //   const dialogRef = this.dialog.open(ProviderCreateComponent, {
-  //     width: '320px',
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //   });
+  openDialogAdd(): void {
+    const dialogRef = this.dialog.open(ProductCreateComponent, {
+      width: '320px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
     
-  // }
+  }
 
 }

@@ -18,5 +18,25 @@ export class ProductDataService {
   public getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(environment.URL + 'producto/traer/'+id);
   }
+
+  public createProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(environment.URL + 'producto/crear', product);
+  }
+
+  public updateProduct(id: number , product: Product): Observable<Product> {
+    return this.http.put<Product>(environment.URL + 'producto/editar/'+ id,  product);
+  }
+
+  public activateProduct(id: number): Observable<Product> {
+    return this.http.post<Product>(environment.URL + 'producto/activar/', + id);
+  }
+
+  public deactivateProduct(id: number): Observable<Product> {
+    return this.http.post<Product>(environment.URL + 'producto/desactivar/', + id);
+  }
+
+  public deleteProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(environment.URL + 'producto/borrar/' + id);
+  }
   
 }

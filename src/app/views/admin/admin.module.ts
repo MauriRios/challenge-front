@@ -21,6 +21,14 @@ import { ProviderEditComponent } from './provider-table/provider-edit/provider-e
 import { ProviderDeleteComponent } from './provider-table/provider-delete/provider-delete.component';
 import { ProviderCreateComponent } from './provider-table/provider-create/provider-create.component';
 import { ProviderInfoDialogComponent } from './product-table/provider-info-dialog/provider-info-dialog.component';
+import { ProductCreateComponent } from './product-table/product-create/product-create.component';
+import { ProductEditComponent } from './product-table/product-edit/product-edit.component';
+import { ProductDeleteComponent } from './product-table/product-delete/product-delete.component';
+import { CustomerDeleteComponent } from './customer-table/customer-delete/customer-delete.component';
+import { CustomerCreateComponent } from './customer-table/customer-create/customer-create.component';
+import { CustomerEditComponent } from './customer-table/customer-edit/customer-edit.component';
+import { SaleCreateComponent } from './sale-table/sale-create/sale-create.component';
+import { SaleListDialogComponent } from './sale-table/sale-list-dialog/sale-list-dialog.component';
 
 
 
@@ -36,7 +44,15 @@ import { ProviderInfoDialogComponent } from './product-table/provider-info-dialo
     ProviderEditComponent,
     ProviderDeleteComponent,
     ProviderCreateComponent,
-    ProviderInfoDialogComponent
+    ProviderInfoDialogComponent,
+    ProductCreateComponent,
+    ProductEditComponent,
+    ProductDeleteComponent,
+    CustomerDeleteComponent,
+    CustomerCreateComponent,
+    CustomerEditComponent,
+    SaleCreateComponent,
+    SaleListDialogComponent
   ],  
   exports: [
     NavigationComponent
