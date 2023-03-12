@@ -23,16 +23,6 @@ export class CustomerCreateComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    this.getCustomer();
-  }
-
-  getCustomer():void{
-    let id = localStorage.getItem('idCustomer');
-    this.customerDataService.getCustomerById(+id!).subscribe(
-      data => {
-        this.customer = data;
-      }
-    );
   }
 
   createAddForm(){

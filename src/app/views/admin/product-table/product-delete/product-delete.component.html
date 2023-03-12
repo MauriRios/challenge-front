@@ -1,1 +1,8 @@
-<p>product-delete works!</p>
+<h1 mat-dialog-title class="title" >Eliminar Producto</h1>
+<div mat-dialog-content>
+¿Estás seguro que desea eliminar este producto? "{{product.id}} {{product.name}} {{product.description}}"?
+</div>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cerrar</button>
+        <button mat-button mat-dialog-close cdkFocusInitial (click)="deleteProduct()">Aceptar</button>
+    </mat-dialog-actions>

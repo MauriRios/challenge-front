@@ -27,16 +27,14 @@ export class CustomerDataService {
     return this.http.put<Customer>(environment.URL + 'cliente/editar/'+ id,  customer);
   }
 
-  public activateCustomer(id: number): Observable<Customer> {
-    return this.http.post<Customer>(environment.URL + 'cliente/activar/', + id);
-  }
-
-  public deactivateProvider(id: number): Observable<Customer> {
-    return this.http.post<Customer>(environment.URL + 'cliente/desactivar/', + id);
-  }
-
   public deleteCustomer(id: number): Observable<Customer> {
     return this.http.delete<Customer>(environment.URL + 'cliente/borrar/' + id);
+  }
+
+  public toggleCustomer(id: number, active: boolean): Observable<any> {
+    const endpoint = active ? 'activar' : 'desactivar';
+    const url = `${environment.URL+ '/cliente/'}${endpoint}/${id}`;
+    return this.http.put(url, {});
   }
 
 

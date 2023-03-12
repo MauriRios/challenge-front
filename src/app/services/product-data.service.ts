@@ -27,16 +27,17 @@ export class ProductDataService {
     return this.http.put<Product>(environment.URL + 'producto/editar/'+ id,  product);
   }
 
-  public activateProduct(id: number): Observable<Product> {
-    return this.http.post<Product>(environment.URL + 'producto/activar/', + id);
+  public toggleProduct(id: number, active: boolean): Observable<any> {
+    const endpoint = active ? 'activar' : 'desactivar';
+    const url = `${environment.URL + '/producto/'}${endpoint}/${id}`;
+    return this.http.put(url, {});
   }
 
-  public deactivateProduct(id: number): Observable<Product> {
-    return this.http.post<Product>(environment.URL + 'producto/desactivar/', + id);
-  }
 
   public deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(environment.URL + 'producto/borrar/' + id);
   }
+
+
   
 }

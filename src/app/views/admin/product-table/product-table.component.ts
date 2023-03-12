@@ -27,7 +27,9 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
   provider: Provider = new Provider();
   dataSource = new MatTableDataSource<any>();
 
-  displayedColumns = ['id', 'name', 'description', 'price', 'stock', 'status', 'provider', 'acciones'];
+  displayedColumns = ['id', 'name', 'description', 'price', 'stock', 'provider', 'acciones', 'status'];
+  isChecked: boolean;
+  productId: number;
 
   constructor(
     private productDataService : ProductDataService,
@@ -42,6 +44,13 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  toggleProduct(productId: number, productStatus: boolean) {
+    this.productDataService.toggleProduct(productId, productStatus)
+    .subscribe((response) => {
+      console.log(response);
+    });
   }
 
   getProducts(): void {

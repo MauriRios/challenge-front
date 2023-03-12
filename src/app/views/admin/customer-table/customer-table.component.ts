@@ -19,10 +19,12 @@ import { PurchasesDialogComponent } from './purchases-dialog/purchases-dialog.co
 
 export class CustomerTableComponent implements AfterViewInit, OnInit {
   
-  displayedColumns: string [] = ['ID', 'Nombre', "Apellido", "DNI", "Direccion", "Telefono", "Compras", "Acciones"];
+  displayedColumns: string [] = ['ID', 'Nombre', "Apellido", "DNI", "Direccion", "Telefono", "Compras", "Acciones", 'Status'];
   dataSource = new MatTableDataSource<any>();
 
   customers: Customer[] = [];
+  isChecked: boolean;
+  customerId: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -51,6 +53,13 @@ export class CustomerTableComponent implements AfterViewInit, OnInit {
         this.dataSource.sort! = this.sort;
         console.log(data)
       });
+  }
+
+  toggleCustomer(customerId: number, customerStatus: boolean) {
+    this.customerDataService.toggleCustomer(customerId, customerStatus)
+    .subscribe((response) => {
+      console.log(response);
+    });
   }
 
   openDialog(customer: Customer): void {

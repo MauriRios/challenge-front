@@ -18,21 +18,11 @@ export class ProviderCreateComponent implements OnInit {
   constructor(private providerDataService : ProviderDataService,
               private fb: FormBuilder,
               private _snackBar: MatSnackBar) {
-
                 this.createAddForm();
               }
 
   ngOnInit(): void {
-    this.getProvider();
-  }
 
-  getProvider():void{
-    let id = localStorage.getItem('idProvider');
-    this.providerDataService.getProviderById(+id!).subscribe(
-      data => {
-        this.provider = data;
-      }
-    );
   }
 
   createAddForm(){

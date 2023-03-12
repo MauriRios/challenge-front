@@ -12,3 +12,8 @@
   align-items: center;
   margin-top: 15px;
 }
+
+mat-slide-toggle {
+  margin: 8px 0;
+  display: block;
+}

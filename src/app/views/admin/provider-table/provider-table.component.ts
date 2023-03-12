@@ -23,7 +23,9 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
   providers: Provider[] = [];
   dataSource = new MatTableDataSource<any>();
 
-  displayedColumns = ['id', 'name', 'lastName', 'cuit', 'phone', 'address', 'status', 'products', 'saleList', 'acciones'];
+  displayedColumns = ['id', 'name', 'lastName', 'cuit', 'phone', 'address', 'products', 'saleList', 'acciones', 'status'];
+  isChecked: boolean;
+  providerId: number;
 
   constructor(
     private providerDataService : ProviderDataService,
@@ -39,6 +41,13 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
     
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  toggleProvider(providerId: number, providerStatus: boolean) {
+    this.providerDataService.toggleProvider(providerId, providerStatus)
+    .subscribe((response) => {
+      console.log(response);
+    });
   }
 
   getProviders(): void {

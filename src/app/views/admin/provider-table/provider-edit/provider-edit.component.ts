@@ -56,7 +56,7 @@ export class ProviderEditComponent implements OnInit {
       const value = this.editForm.value;
       console.log(value);
     console.log(this.editForm.value)
-    this.providerDataService.updateProduct(this.editForm.value.id, this.editForm.value)
+    this.providerDataService.updateProvider(this.editForm.value.id, this.editForm.value)
       .subscribe((results) => {
         this._snackBar.open("Proveedor editado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
