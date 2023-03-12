@@ -74,22 +74,22 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
     
   }
 
-  openDialogEdit(provider: Provider): void {
+  openDialogEdit(product: Product): void {
     const dialogRef = this.dialog.open(ProductEditComponent, {
       width: '320px',
     });
-    localStorage.setItem("idProvider", provider.id!.toString());
+    localStorage.setItem("idProduct", product.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
     
   }
 
-  openDialogDelete(provider: Provider): void {
+  openDialogDelete(product: Product): void {
     const dialogRef = this.dialog.open(ProductDeleteComponent, {
       width: '320px',
     });
-    localStorage.setItem("idProvider", provider.id!.toString());
+    localStorage.setItem("idProduct", product.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

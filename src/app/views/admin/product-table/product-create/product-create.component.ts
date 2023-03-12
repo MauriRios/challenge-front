@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/models/product.model';
+import { Provider } from 'src/app/models/provider.model';
 import { ProductDataService } from 'src/app/services/product-data.service';
+import { ProviderDataService } from 'src/app/services/provider-data.service';
 
 @Component({
   selector: 'app-product-create',
@@ -12,10 +14,12 @@ import { ProductDataService } from 'src/app/services/product-data.service';
 export class ProductCreateComponent implements OnInit {
 
   product: Product = new Product();
+  providers: Provider[] = [];
   durationInSeconds = 5;
   addForm: FormGroup;
   
   constructor(private productDataService : ProductDataService,
+              private providerDataService : ProviderDataService, 
               private fb: FormBuilder,
               private _snackBar: MatSnackBar) {
 
@@ -23,7 +27,7 @@ export class ProductCreateComponent implements OnInit {
               }
 
   ngOnInit(): void {
-
+    this.getProviders();
   }
 
 
@@ -38,6 +42,12 @@ export class ProductCreateComponent implements OnInit {
       
     })
 
+  }
+
+  getProviders(){
+    this.providerDataService.getProviders()
+    .subscribe( data => this.providers = data)
+    console.log(this.providers)
   }
 
   addProvider(){

@@ -1,1 +1,65 @@
-<p>product-edit works!</p>
+<form [formGroup]="editForm">
+    <h2 mat-dialog-title>Agregar Proveedor</h2>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Proveedor</mat-label>
+        <mat-select class="form-group" formControlName="provider" name="provider" required>
+          <mat-option *ngFor="let provider of providers" [value]="provider" >
+            {{provider.id}} {{provider.providerName}} {{provider.providerLastName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+<div  *ngIf="providerField!.errors && (providerField!.dirty || providerField!.touched)">
+    <div class="error mb-4" *ngIf="priceField!.hasError('required')">
+      * El campo Proveedor es requerido
+    </div>
+</div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" class="form-group" formControlName="name" name="name" required>
+    </mat-form-field>
+    <div  *ngIf="nameField!.errors && (nameField!.dirty ||nameField!.touched)">
+        <div class="error mb-4" *ngIf="nameField!.hasError('required')">
+          * El campo Nombre es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Descripción</mat-label>
+        <input matInput type="text" class="form-group" formControlName="description" name="description" required>
+    </mat-form-field>
+    <div  *ngIf="descriptionField!.errors && (descriptionField!.dirty || descriptionField!.touched)">
+        <div class="error mb-4" *ngIf="descriptionField!.hasError('required')">
+          * El campo Descripción es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Precio</mat-label>
+        <input matInput type="number" class="form-group" formControlName="price" name="price" required>
+    </mat-form-field>
+    <div  *ngIf="priceField!.errors && (priceField!.dirty || priceField!.touched)">
+        <div class="error mb-4" *ngIf="priceField!.hasError('required')">
+          * El campo Precio es requerido
+        </div>
+    </div>
+
+    <mat-form-field appearance="outline" >
+        <mat-label>Stock</mat-label>
+        <input matInput type="number" class="form-group" formControlName="stock" name="stock" required>
+    </mat-form-field>
+    <div  *ngIf="stockField!.errors && (stockField!.dirty || stockField!.touched)">
+        <div class="error mb-4" *ngIf="stockField!.hasError('required')">
+          * El Stock es requerido
+        </div>
+    </div>
+
+</form>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="updateProduct()">Crear</button>
+</mat-dialog-actions>
+

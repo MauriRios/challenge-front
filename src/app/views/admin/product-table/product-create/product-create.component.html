@@ -2,10 +2,15 @@
 <form [formGroup]="addForm">
     <h2 mat-dialog-title>Agregar Proveedor</h2>
 
-    <mat-form-field appearance="outline" >
-        <mat-label>Proveedor</mat-label>
-        <input matInput type="number" class="form-group" formControlName="provider" name="provider" required>
-    </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Proveedor</mat-label>
+            <mat-select class="form-group" formControlName="provider" name="provider" required>
+              <mat-option *ngFor="let provider of providers" [value]="provider" >
+                {{provider.id}} {{provider.providerName}} {{provider.providerLastName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
     <div  *ngIf="providerField!.errors && (providerField!.dirty || providerField!.touched)">
         <div class="error mb-4" *ngIf="priceField!.hasError('required')">
           * El campo Proveedor es requerido

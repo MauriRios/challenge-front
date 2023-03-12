@@ -1,3 +1,10 @@
 .full-width-table {
   width: 100%;
 }
+.custom-toggle .mat-slide-toggle-thumb {
+  background-color: black;
+}
+
+.custom-toggle .mat-slide-toggle-bar {
+  background-color: gray;
+}
