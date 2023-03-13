@@ -1,1 +1,40 @@
-<p>sale-create works!</p>
+
+<form [formGroup]="createForm">
+    <h2 mat-dialog-title>Agregar Proveedor</h2>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Proveedor</mat-label>
+            <mat-select class="form-group" formControlName="provider" name="provider" required>
+              <mat-option *ngFor="let provider of providers" [value]="provider" >
+                {{provider.id}} {{provider.providerName}} {{provider.providerLastName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Cliente</mat-label>
+        <mat-select class="form-group" formControlName="customer" name="customer" required>
+          <mat-option *ngFor="let customer of customers" [value]="customer" >
+            {{customer.id}} {{customer.name}} {{customer.lastName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-list >
+      <mat-list-item  *ngFor="let product of products">
+        <h3 mat-line>{{ product.name }}</h3>
+        <p mat-line>Precio: {{ product.price }}</p>
+        <mat-form-field >
+        <input matInput type="number" [(ngModel)]="product.quantity"
+        min="0" max="{{ product.stock }}">
+        </mat-form-field>
+    </mat-list-item>
+    </mat-list>
+
+</form> 
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="createSale()">Crear</button>
+</mat-dialog-actions>

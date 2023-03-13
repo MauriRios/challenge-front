@@ -36,6 +36,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
+
 
 
 const sharedAngularMaterialModule = [
@@ -72,7 +74,8 @@ const sharedAngularMaterialModule = [
   MatRadioModule,
   MatDatepickerModule,
   MatTooltipModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatStepperModule
 ];
 
 

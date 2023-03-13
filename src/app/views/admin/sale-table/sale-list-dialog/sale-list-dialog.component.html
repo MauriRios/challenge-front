@@ -1,1 +1,21 @@
-<p>sale-list-dialog works!</p>
+<mat-dialog-content class="mat-typography">
+
+<table matSort (matSortChange)="sortData($event)" *ngIf="productList.length > 0">
+    <tr>
+        <th mat-sort-header="id">id</th>
+        <th mat-sort-header="name">Nombre</th>
+        <th mat-sort-header="description">Descripción</th>
+        <th mat-sort-header="price">Precio</th>
+        <th mat-sort-header="quantity">Cantidad</th>
+    </tr>
+    
+    <tr *ngFor="let product of sortedData">
+        <td>{{product.id}}</td>
+        <td>{{product.productName}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.price}}</td>
+        <td>{{product.quantity}}</td>
+    </tr>
+</table>
+
+</mat-dialog-content>

@@ -9,6 +9,7 @@ export class Product {
     price: number;
     stock: number;
     status: boolean;
+    quantity: number;
     provider: Provider;
     sales: Sale[];
 }
