@@ -27,6 +27,18 @@ export class ProductsListDialogComponent implements OnInit, AfterViewInit {
     this.getProvider();
   }
 
+  getProvider():void{
+    let id = localStorage.getItem('idProvider');
+    this.providerDataService.getProviderById(+id!).subscribe(
+      data => {
+        this.provider = data;
+        this.productList = this.provider.productList.map( data => data );
+        this.sortedData = this.productList.slice();
+        console.log(this.productList)
+      }
+    );
+  }
+
   sortData(sort: Sort) {
     const data = this.productList.slice();
     if (!sort.active || sort.direction === '') {
@@ -51,20 +63,6 @@ export class ProductsListDialogComponent implements OnInit, AfterViewInit {
           return 0;
       }
     });
-  }
-
-  
-  
-  getProvider():void{
-    let id = localStorage.getItem('idProvider');
-    this.providerDataService.getProviderById(+id!).subscribe(
-      data => {
-        this.provider = data;
-        this.productList = this.provider.productList.map( data => data );
-        this.sortedData = this.productList.slice();
-        console.log(this.productList)
-      }
-    );
   }
 
 }

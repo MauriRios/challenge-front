@@ -8,39 +8,39 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Venta ID</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      <td mat-cell *matCellDef="let row">{{row.sale.id}}</td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="providerId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Proveedor ID</th>
-      <td mat-cell *matCellDef="let row">{{row.providerId}}</td>
+      <td mat-cell *matCellDef="let row">{{row.sale.providerId}}</td>
     </ng-container>
 
     <ng-container matColumnDef="customerId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente ID</th>
-      <td mat-cell *matCellDef="let row">{{row.customerId}}</td>
+      <td mat-cell *matCellDef="let row">{{row.sale.customerId}}</td>
     </ng-container>
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
-      <td mat-cell *matCellDef="let row">{{row.date}}</td>
+      <td mat-cell *matCellDef="let row">{{row.sale.date}}</td>
     </ng-container>
 
     <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad</th>
-      <td mat-cell *matCellDef="let row">{{row.quantity}}</td>
+      <td mat-cell *matCellDef="let row">{{row.sale.quantity}}</td>
     </ng-container>
 
     <ng-container matColumnDef="totalPrice">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio Total</th>
-      <td mat-cell *matCellDef="let row">{{row.totalPrice}}</td>
+      <td mat-cell *matCellDef="let row">{{row.sale.totalPrice}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="products">
+    <ng-container matColumnDef="product">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Lista de Productos</th>
-      <td mat-cell *matCellDef="let products">
-        <button mat-icon-button matTooltip="Productos" (click)="openDialog(products)">
+      <td mat-cell *matCellDef="let product">
+        <button mat-icon-button matTooltip="Productos" (click)="openDialog(product)">
           <mat-icon >open_in_new</mat-icon></button>
         </td>
     </ng-container>

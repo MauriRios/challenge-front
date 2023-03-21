@@ -14,7 +14,7 @@
       <div *ngFor="let purchase of customer.purchases">
         <p><b>Compra # {{purchase.id}}</b> - Fecha: {{purchase.date}} - Total: ${{purchase.totalPrice}}</p>
         <ul *ngFor="let product of purchase.products">
-          <li >{{product.productName}} {{product.description}} - Cantidad: {{product.quantity}} - Precio: ${{product.price}}</li>
+          <li >{{product.name}} {{product.description}} - Cantidad: {{product.quantity}} - Precio: ${{product.price}}</li>
         </ul>
       </div>
     </ng-container>

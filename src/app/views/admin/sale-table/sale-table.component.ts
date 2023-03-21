@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { OrderDetail } from 'src/app/models/orderDetail.model';
 import { Sale } from 'src/app/models/sale.model';
 import { SaleDTO } from 'src/app/models/saleDTO.model';
 import { SaleDataService } from 'src/app/services/sale-data.service';
@@ -19,10 +20,11 @@ export class SaleTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  sales: Sale[] = [];
+  sales: SaleDTO[] = [];
+  orderDetail: OrderDetail[]=[];
   dataSource = new MatTableDataSource<any>();
 
-  displayedColumns = ['id', 'providerId', 'customerId', 'date', 'quantity', 'totalPrice', 'products'];
+  displayedColumns = ['id', 'providerId', 'customerId', 'date', 'quantity', 'totalPrice', 'product'];
 
   constructor(
     private saleDataService : SaleDataService,
@@ -31,7 +33,8 @@ export class SaleTableComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getSales();
+    // this.getSales();
+    this.getOrderDetail();
   }
 
   ngAfterViewInit(): void {
@@ -40,14 +43,27 @@ export class SaleTableComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  getSales(): void {
-    this.saleDataService.getSales().subscribe(
-      data => { 
-        this.sales = data;
-        this.dataSource.data = data;
+  // getSales(): void {
+  //   this.saleDataService.getSales().subscribe(
+  //     data => { 
+  //       this.sales = data;
+  //       this.dataSource.data = data;
+  //       this.dataSource.paginator! = this.paginator;
+  //       this.dataSource.sort! = this.sort;
+  //     });
+  // }
+
+  getOrderDetail(): void {
+    this.saleDataService.getOrders()
+      .subscribe(orderDetail => {
+        this.orderDetail = orderDetail;
+
+        this.dataSource.data = orderDetail;
         this.dataSource.paginator! = this.paginator;
         this.dataSource.sort! = this.sort;
+        console.log(orderDetail)
       });
+      
   }
 
   openDialog(sale: SaleDTO): void {
@@ -68,4 +84,11 @@ export class SaleTableComponent implements AfterViewInit {
     });
     
   }
+
+
+
+
+
+
+
 }

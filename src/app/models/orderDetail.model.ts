@@ -1,11 +1,9 @@
 import { ProductSaleDTO } from "./productSaleDTO.model";
-import { Sale } from "./sale.model";
+import { SaleDTO } from "./saleDTO.model";
 
 export class OrderDetail {
 
-    private id: number;
-    private sale: Sale;
-    private product: ProductSaleDTO[];
-    private quantity: number;
+    sale: SaleDTO;
+    product: ProductSaleDTO[];
 }
 

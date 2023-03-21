@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
-import { Product } from 'src/app/models/product.model';
+import { OrderDetail } from 'src/app/models/orderDetail.model';
 import { ProductSaleDTO } from 'src/app/models/productSaleDTO.model';
-import { SaleDTO } from 'src/app/models/saleDTO.model';
 import { SaleDataService } from 'src/app/services/sale-data.service';
 
 @Component({
@@ -10,34 +9,34 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
   templateUrl: './sale-list-dialog.component.html',
   styleUrls: ['./sale-list-dialog.component.css']
 })
-export class SaleListDialogComponent implements OnInit {
+export class SaleListDialogComponent implements OnInit, AfterViewInit {
 
   productList: ProductSaleDTO[] = [];
-  sale: SaleDTO;
+  orderDetail: OrderDetail[]=[];
   sortedData: ProductSaleDTO[];
 
   constructor(private saleDataService : SaleDataService,) {
   }
 
   ngOnInit(): void {
-    this.getSale();
+    this.getOrderDetail();
 
   }
   ngAfterViewInit(): void {
-    this.getSale();
+    this.getOrderDetail();
   }
 
-  getSale():void{
-    let id = localStorage.getItem('idSale');
-    this.saleDataService.getSaleById(+id!).subscribe(
-      data => {
-        this.sale = data;
-        this.productList = this.sale.products.map( data => data );
+  getOrderDetail(): void {
+    const id = localStorage.getItem('idSale');
+    this.saleDataService.getOrders().subscribe(orderDetail => {
+        this.orderDetail = orderDetail;
+        const saleDetail = orderDetail.filter(detail => detail.sale.id.toString() === id)[0];
+      
+        this.productList = saleDetail.product.map(data => data);
         this.sortedData = this.productList.slice();
-        console.log(this.productList)
-      }
+        }
     );
-  }
+}
 
   sortData(sort: Sort) {
     const data = this.productList.slice();
@@ -52,7 +51,7 @@ export class SaleListDialogComponent implements OnInit {
         case 'id':
           return compare(a.id, b.id, isAsc);
           case 'name':
-            return compare(a.productName, b.productName, isAsc);
+            return compare(a.name, b.name, isAsc);
         case 'description':
           return compare(a.description, b.description, isAsc);
         case 'price':
