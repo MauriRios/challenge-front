@@ -27,12 +27,16 @@ export class PurchasesDialogComponent implements OnInit {
     let id = localStorage.getItem('idCustomer');
     this.customerDataService.getCustomerById(+id!).subscribe(
       data => {
+
+        
+
         this.customer = data;
         console.log(this.customer)
 
       }
     );
   }
+
 
 
 }

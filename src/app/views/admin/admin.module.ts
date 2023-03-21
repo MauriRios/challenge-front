@@ -6,11 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { CustomerTableComponent } from './customer-table/customer-table.component';
 import { PurchasesDialogComponent } from './customer-table/purchases-dialog/purchases-dialog.component';
 import { ProviderTableComponent } from './provider-table/provider-table.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from 'src/app/shared/angular-material/angular-material.module';
-import { ViewsModule } from '../views.module';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -29,6 +25,7 @@ import { CustomerCreateComponent } from './customer-table/customer-create/custom
 import { CustomerEditComponent } from './customer-table/customer-edit/customer-edit.component';
 import { SaleCreateComponent } from './sale-table/sale-create/sale-create.component';
 import { SaleListDialogComponent } from './sale-table/sale-list-dialog/sale-list-dialog.component';
+import { ProviderSalesListComponent } from './provider-table/provider-sales-list/provider-sales-list.component';
 
 
 
@@ -52,7 +49,8 @@ import { SaleListDialogComponent } from './sale-table/sale-list-dialog/sale-list
     CustomerCreateComponent,
     CustomerEditComponent,
     SaleCreateComponent,
-    SaleListDialogComponent
+    SaleListDialogComponent,
+    ProviderSalesListComponent
   ],  
   exports: [
     NavigationComponent

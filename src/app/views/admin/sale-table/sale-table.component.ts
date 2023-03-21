@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { OrderDetail } from 'src/app/models/orderDetail.model';
+import { ProductProviderDTO } from 'src/app/models/productProviderDTO';
 import { Sale } from 'src/app/models/sale.model';
 import { SaleDTO } from 'src/app/models/saleDTO.model';
 import { SaleDataService } from 'src/app/services/sale-data.service';
@@ -20,8 +21,8 @@ export class SaleTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  sales: SaleDTO[] = [];
   orderDetail: OrderDetail[]=[];
+  sale: SaleDTO[];
   dataSource = new MatTableDataSource<any>();
 
   displayedColumns = ['id', 'providerId', 'customerId', 'date', 'quantity', 'totalPrice', 'product'];
@@ -33,7 +34,6 @@ export class SaleTableComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
-    // this.getSales();
     this.getOrderDetail();
   }
 
@@ -43,20 +43,15 @@ export class SaleTableComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  // getSales(): void {
-  //   this.saleDataService.getSales().subscribe(
-  //     data => { 
-  //       this.sales = data;
-  //       this.dataSource.data = data;
-  //       this.dataSource.paginator! = this.paginator;
-  //       this.dataSource.sort! = this.sort;
-  //     });
-  // }
 
   getOrderDetail(): void {
     this.saleDataService.getOrders()
       .subscribe(orderDetail => {
         this.orderDetail = orderDetail;
+        
+        const sale = this.orderDetail.map(data => data.sale);
+
+        this.sale = sale;
 
         this.dataSource.data = orderDetail;
         this.dataSource.paginator! = this.paginator;
@@ -66,14 +61,16 @@ export class SaleTableComponent implements AfterViewInit {
       
   }
 
-  openDialog(sale: SaleDTO): void {
+  openDialog(sale: SaleDTO): void {  
     const dialogRef = this.dialog.open(SaleListDialogComponent);
     localStorage.setItem("idSale", sale.id!.toString());
+    console.trace(sale);
+    
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-    
   }
+
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(SaleCreateComponent, {

@@ -9,6 +9,7 @@ import { ProductsListDialogComponent } from './products-list-dialog/products-lis
 import { ProviderCreateComponent } from './provider-create/provider-create.component';
 import { ProviderDeleteComponent } from './provider-delete/provider-delete.component';
 import { ProviderEditComponent } from './provider-edit/provider-edit.component';
+import { ProviderSalesListComponent } from './provider-sales-list/provider-sales-list.component';
 
 @Component({
   selector: 'app-provider-table',
@@ -62,6 +63,15 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
 
   openDialog(provider: Provider): void {
     const dialogRef = this.dialog.open(ProductsListDialogComponent);
+    localStorage.setItem("idProvider", provider.id!.toString());
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+    
+  }
+
+  openSalesDialog(provider: Provider): void {
+    const dialogRef = this.dialog.open(ProviderSalesListComponent);
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

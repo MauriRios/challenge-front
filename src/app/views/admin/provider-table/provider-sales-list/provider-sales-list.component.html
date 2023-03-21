@@ -1,0 +1,37 @@
+
+
+<mat-dialog-content class="mat-typography" >
+<div *ngFor="let info of orderDetail">
+    <h3>Detalles de Compras</h3>
+
+    <p><b>Fecha:</b> {{info.sale.date}}</p>
+    <p><b>Cantidad total de productos:</b> {{info.sale.quantity}}</p>
+    <p><b>Precio Total:</b> {{info.sale.totalPrice}}</p>
+
+    
+    <h2>Lista de Compras</h2>
+
+    <table matSort (matSortChange)="sortData($event)" *ngIf="orderDetail.length > 0">
+        <tr>
+            <th mat-sort-header="id">id</th>
+            <th mat-sort-header="name">Nombre</th>
+            <th mat-sort-header="description">Descripción</th>
+            <th mat-sort-header="price">Precio</th>
+            <th mat-sort-header="quantity">Cantidad</th>
+        </tr>
+        
+        <tr *ngFor="let product of saleProduct">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+        </tr>
+    </table>
+
+    <div *ngIf="orderDetail.length == 0">
+        <p>El Proveedor no tiene ventas aún</p>
+    </div>
+</div>
+    
+    </mat-dialog-content>
