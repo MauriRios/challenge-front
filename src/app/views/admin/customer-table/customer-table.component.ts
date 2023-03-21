@@ -66,6 +66,7 @@ export class CustomerTableComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(PurchasesDialogComponent);
     localStorage.setItem("idCustomer", customer.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idCustomer");
       console.log('The dialog was closed');
     });
   }
@@ -76,6 +77,7 @@ export class CustomerTableComponent implements AfterViewInit, OnInit {
     });
     localStorage.setItem("idCustomer", customer.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idCustomer");
       console.log('The dialog was closed');
     });
     
@@ -87,6 +89,7 @@ export class CustomerTableComponent implements AfterViewInit, OnInit {
     });
     localStorage.setItem("idCustomer", customer.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idCustomer");
       console.log('The dialog was closed');
     });
   }
@@ -96,6 +99,7 @@ export class CustomerTableComponent implements AfterViewInit, OnInit {
       width: '320px',
     });
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idCustomer");
       console.log('The dialog was closed');
     });
     

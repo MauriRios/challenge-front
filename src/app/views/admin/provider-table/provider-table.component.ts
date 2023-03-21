@@ -65,6 +65,7 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(ProductsListDialogComponent);
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -74,6 +75,7 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(ProviderSalesListComponent);
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -85,6 +87,7 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
     });
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -96,6 +99,7 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
     });
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -106,6 +110,7 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
       width: '320px',
     });
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     

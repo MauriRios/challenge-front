@@ -69,6 +69,7 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
     console.log(productProviderDTO)
     localStorage.setItem("idProvider", productProviderDTO.provideId.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -80,6 +81,7 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
     });
     localStorage.setItem("idProduct", product.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -91,6 +93,7 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
     });
     localStorage.setItem("idProduct", product.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
@@ -101,6 +104,7 @@ export class ProductTableComponent implements AfterViewInit, OnInit {
       width: '320px',
     });
     dialogRef.afterClosed().subscribe(result => {
+      localStorage.removeItem("idProvider");
       console.log('The dialog was closed');
     });
     
