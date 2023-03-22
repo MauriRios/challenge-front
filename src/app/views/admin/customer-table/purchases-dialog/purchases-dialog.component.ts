@@ -22,20 +22,13 @@ export class PurchasesDialogComponent implements OnInit {
     this.getCustomer();
   }
   
-
-
   //TODO arreglar la funcion para que no se repitan las compras
   //TODO con el mismo id, obtene las compras desde la orden y no desde customer
   getCustomer():void{
     let id = localStorage.getItem('idCustomer');
     this.customerDataService.getCustomerById(+id!).subscribe(
       data => {
-
-        
-
         this.customer = data;
-        console.log(this.customer)
-
       }
     );
   }

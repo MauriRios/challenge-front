@@ -26,7 +26,6 @@ export class ProductDataService {
     .pipe(
       tap(()=> {
           this._refresh$.next();
-          this._refresh$.complete();
       })
     );
   }
@@ -36,7 +35,6 @@ export class ProductDataService {
     .pipe(
       tap(()=> {
           this._refresh$.next();
-          this._refresh$.complete();
       })
     );
   }
@@ -45,7 +43,6 @@ export class ProductDataService {
     .pipe(
       tap(()=> {
           this._refresh$.next();
-          this._refresh$.complete();
       })
     );
   }

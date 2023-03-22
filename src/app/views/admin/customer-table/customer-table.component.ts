@@ -63,14 +63,12 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
         this.dataSource.data = data;
         this.dataSource.paginator! = this.paginator;
         this.dataSource.sort! = this.sort;
-        console.log(data)
       });
   }
 
   toggleCustomer(customerId: number, customerStatus: boolean) {
     this.customerDataService.toggleCustomer(customerId, customerStatus)
     .subscribe((response) => {
-      console.log(response);
     });
   }
 

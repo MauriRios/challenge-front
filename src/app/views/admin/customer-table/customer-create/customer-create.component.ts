@@ -38,8 +38,6 @@ export class CustomerCreateComponent implements OnInit {
 
   addCustomer(){
     if(this.addForm.valid){
-      const value = this.addForm.value;
-      console.log(value);
     this.customerDataService.createCustomer(this.addForm.value)
     .subscribe(newCustomer => {
       this._snackBar.open("Cliente Agregado correctamente!", "Cerrar", {

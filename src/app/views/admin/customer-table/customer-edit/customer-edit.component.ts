@@ -53,15 +53,11 @@ export class CustomerEditComponent implements OnInit {
     let id = localStorage.getItem('idCustomer');
     this.editForm.value.id = id;
     if(this.editForm.valid){
-      const value = this.editForm.value;
-      console.log(value);
-    console.log(this.editForm.value)
     this.customerDataService.updateCustomer(this.editForm.value.id, this.editForm.value)
-      .subscribe((results) => {
+      .subscribe(() => {
         this._snackBar.open("Cliente editado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });
-        console.log(this.editForm);
         this.ngOnInit();});
       } else {
         this._snackBar.open("Error, Faltan datos del cliente", "Cerrar", {

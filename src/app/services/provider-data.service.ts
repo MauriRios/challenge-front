@@ -26,7 +26,6 @@ export class ProviderDataService {
     .pipe(
       tap(()=> {
           this._refresh$.next();
-          this._refresh$.complete();
       })
     );
   }
@@ -36,7 +35,6 @@ export class ProviderDataService {
     .pipe(
       tap(()=> {
           this._refresh$.next();
-          this._refresh$.complete();
       })
     );
   }
@@ -46,7 +44,6 @@ export class ProviderDataService {
     .pipe(
       tap(()=> {
           this._refresh$.next();
-          this._refresh$.complete();
       })
     );
   }

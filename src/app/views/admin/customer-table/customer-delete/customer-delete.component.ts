@@ -26,7 +26,6 @@ export class CustomerDeleteComponent implements OnInit {
     this.customerDataService.getCustomerById(+id!).subscribe(
       data => {
         this.customer = data;
-        console.log(data);
       }
     );
   }
