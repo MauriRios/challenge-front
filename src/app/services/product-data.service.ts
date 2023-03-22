@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product.model';
 
@@ -8,6 +8,8 @@ import { Product } from '../models/product.model';
   providedIn: 'root'
 })
 export class ProductDataService {
+
+  private _refresh$ = new Subject<void>();
 
   constructor(private http:HttpClient) { }
 
@@ -20,22 +22,42 @@ export class ProductDataService {
   }
 
   public createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(environment.URL + 'producto/crear', product);
+    return this.http.post<Product>(environment.URL + 'producto/crear', product)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public updateProduct(id: number , product: Product): Observable<Product> {
-    return this.http.put<Product>(environment.URL + 'producto/editar/'+ id,  product);
+    return this.http.put<Product>(environment.URL + 'producto/editar/'+ id,  product)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
+  }
+  public deleteProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(environment.URL + 'producto/borrar/' + id)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public toggleProduct(id: number, active: boolean): Observable<any> {
     const endpoint = active ? 'activar' : 'desactivar';
-    const url = `${environment.URL + '/producto/'}${endpoint}/${id}`;
+    const url = `${environment.URL + 'producto/'}${endpoint}/${id}`;
     return this.http.put(url, {});
   }
 
-
-  public deleteProduct(id: number): Observable<Product> {
-    return this.http.delete<Product>(environment.URL + 'producto/borrar/' + id);
+  get refresh$() {
+    return this._refresh$;
   }
 
 

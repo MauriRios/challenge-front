@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { Provider } from 'src/app/models/provider.model';
 import { ProviderDataService } from 'src/app/services/provider-data.service';
 import { ProductsListDialogComponent } from './products-list-dialog/products-list-dialog.component';
@@ -16,11 +17,13 @@ import { ProviderSalesListComponent } from './provider-sales-list/provider-sales
   templateUrl: './provider-table.component.html',
   styleUrls: ['./provider-table.component.css']
 })
-export class ProviderTableComponent implements AfterViewInit, OnInit {
+export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  subscription!: Subscription; 
+  
   providers: Provider[] = [];
   dataSource = new MatTableDataSource<any>();
 
@@ -36,12 +39,20 @@ export class ProviderTableComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.getProviders();
+
+    this.subscription = this.providerDataService.refresh$.subscribe(() => {
+      this.getProviders();
+    })
   }
 
   ngAfterViewInit(): void {
     
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 
   toggleProvider(providerId: number, providerStatus: boolean) {

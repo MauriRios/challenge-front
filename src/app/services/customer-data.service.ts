@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../models/customer.model';
 
@@ -9,6 +9,8 @@ import { Customer } from '../models/customer.model';
 })
 export class CustomerDataService {
 
+  private _refresh$ = new Subject<void>();
+  
   constructor(private http:HttpClient) { }
 
   public getCustomers(): Observable<Customer[]>  {
@@ -20,21 +22,43 @@ export class CustomerDataService {
   }
   
   public createCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(environment.URL + 'cliente/crear', customer);
+    return this.http.post<Customer>(environment.URL + 'cliente/crear', customer)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public updateCustomer(id: number , customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(environment.URL + 'cliente/editar/'+ id,  customer);
+    return this.http.put<Customer>(environment.URL + 'cliente/editar/'+ id,  customer)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public deleteCustomer(id: number): Observable<Customer> {
-    return this.http.delete<Customer>(environment.URL + 'cliente/borrar/' + id);
+    return this.http.delete<Customer>(environment.URL + 'cliente/borrar/' + id)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public toggleCustomer(id: number, active: boolean): Observable<any> {
     const endpoint = active ? 'activar' : 'desactivar';
-    const url = `${environment.URL+ '/cliente/'}${endpoint}/${id}`;
+    const url = `${environment.URL + 'cliente/'}${endpoint}/${id}`;
     return this.http.put(url, {});
+  }
+
+  get refresh$() {
+    return this._refresh$;
   }
 
 

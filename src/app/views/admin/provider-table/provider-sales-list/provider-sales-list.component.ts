@@ -10,7 +10,7 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
   templateUrl: './provider-sales-list.component.html',
   styleUrls: ['./provider-sales-list.component.css']
 })
-export class ProviderSalesListComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ProviderSalesListComponent implements OnInit, AfterViewInit {
 
 
   orderDetail: OrderDetail[];
@@ -28,19 +28,14 @@ export class ProviderSalesListComponent implements OnInit, OnDestroy, AfterViewI
   ngAfterViewInit(): void{
   }
 
-  ngOnDestroy(): void {
-
-  }
 
   getProvider(): void {
     let id = localStorage.getItem('idProvider');
-    console.log(id);
     this.saleDataService.getOrders().subscribe(
       data => {
         this.orderDetail = data;
-        // filtrar ventas por id del proveedor
-        this.filteredOrders = this.orderDetail.filter(detail => detail.sale.providerId.toString() === id);
-        console.log("filtered orders ---->" + JSON.stringify(this.filteredOrders));
+        this.filteredOrders = this.orderDetail.filter
+        (detail => detail.sale.providerId.toString() === id);
       }
     );
   }

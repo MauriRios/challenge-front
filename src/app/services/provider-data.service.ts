@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Provider } from '../models/provider.model';
 
@@ -8,6 +8,8 @@ import { Provider } from '../models/provider.model';
   providedIn: 'root'
 })
 export class ProviderDataService {
+
+  private _refresh$ = new Subject<void>();
 
   constructor(private http:HttpClient) { }
 
@@ -20,23 +22,44 @@ export class ProviderDataService {
   }
 
   public createProvider(provider: Provider): Observable<Provider> {
-    return this.http.post<Provider>(environment.URL + 'proveedor/crear', provider);
+    return this.http.post<Provider>(environment.URL + 'proveedor/crear', provider)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public updateProvider(id: number , provider: Provider): Observable<Provider> {
-    return this.http.put<Provider>(environment.URL + 'proveedor/editar/'+ id,  provider);
+    return this.http.put<Provider>(environment.URL + 'proveedor/editar/'+ id,  provider)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
+  }
+
+  public deleteProvider(id: number): Observable<Provider> {
+    return this.http.delete<Provider>(environment.URL + 'proveedor/borrar/' + id)
+    .pipe(
+      tap(()=> {
+          this._refresh$.next();
+          this._refresh$.complete();
+      })
+    );
   }
 
   public toggleProvider(id: number, active: boolean): Observable<any> {
     const endpoint = active ? 'activar' : 'desactivar';
-    const url = `${environment.URL+ '/proveedor/'}${endpoint}/${id}`;
+    const url = `${environment.URL+ 'proveedor/'}${endpoint}/${id}`;
     return this.http.put(url, {});
   }
 
 
-  public deleteProvider(id: number): Observable<Provider> {
-    return this.http.delete<Provider>(environment.URL + 'proveedor/borrar/' + id);
+  get refresh$() {
+    return this._refresh$;
   }
-  
   
 }
