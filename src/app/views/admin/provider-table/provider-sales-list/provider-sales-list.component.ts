@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { OrderDetail } from 'src/app/models/orderDetail.model';
 import { ProductSaleDTO } from 'src/app/models/productSaleDTO.model';
@@ -10,49 +10,43 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
   templateUrl: './provider-sales-list.component.html',
   styleUrls: ['./provider-sales-list.component.css']
 })
-export class ProviderSalesListComponent implements OnInit {
+export class ProviderSalesListComponent implements OnInit, OnDestroy, AfterViewInit {
+
 
   orderDetail: OrderDetail[];
-  saleProduct: ProductSaleDTO[];
-  sale: SaleDTO;
+  filteredOrders: any;
   sortedData: ProductSaleDTO[];
   
   constructor(private saleDataService : SaleDataService,) {
+    
   }
 
   ngOnInit(): void {
     this.getProvider();
   }
 
-  getProvider():void{
+  ngAfterViewInit(): void{
+  }
+
+  ngOnDestroy(): void {
+
+  }
+
+  getProvider(): void {
     let id = localStorage.getItem('idProvider');
     console.log(id);
     this.saleDataService.getOrders().subscribe(
       data => {
         this.orderDetail = data;
-        console.log(data);
-        
-        const saleDetail = this.orderDetail.filter(detail => 
-          detail.sale.providerId.toString() === id)[0];
-
-          this.saleProduct = saleDetail.product.map(data => data)
-          this.sale = saleDetail.sale
-
-          console.log(saleDetail.sale);
-          
-
-          console.log("saleDetail ---->" + JSON.stringify(saleDetail));
-          
-
-
-          this.sortedData = this.saleProduct.slice();
-
+        // filtrar ventas por id del proveedor
+        this.filteredOrders = this.orderDetail.filter(detail => detail.sale.providerId.toString() === id);
+        console.log("filtered orders ---->" + JSON.stringify(this.filteredOrders));
       }
     );
   }
 
   sortData(sort: Sort) {
-    const data = this.saleProduct.slice();
+    const data = this.filteredOrders.product.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;

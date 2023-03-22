@@ -5,5 +5,6 @@ export class OrderDetail {
 
     sale: SaleDTO;
     product: ProductSaleDTO[];
+
 }
 
