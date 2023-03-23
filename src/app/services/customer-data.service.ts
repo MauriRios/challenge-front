@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
@@ -21,8 +22,8 @@ export class CustomerDataService {
     return this.http.get<Customer>(environment.URL + 'cliente/traer/'+id);
   }
   
-  public createCustomer(customer: Customer): Observable<Customer> {
-    return this.http.post<Customer>(environment.URL + 'cliente/crear', customer)
+  public createCustomer(customer: Customer): Observable<any> {
+    return this.http.post<any>(environment.URL + 'cliente/crear', customer)
     .pipe(
       tap(()=> {
           this._refresh$.next();
@@ -30,8 +31,8 @@ export class CustomerDataService {
     );
   }
 
-  public updateCustomer(id: number , customer: Customer): Observable<Customer> {
-    return this.http.put<Customer>(environment.URL + 'cliente/editar/'+ id,  customer)
+  public updateCustomer(id: number , customer: Customer): Observable<any> {
+    return this.http.put<any>(environment.URL + 'cliente/editar/'+ id,  customer)
     .pipe(
       tap(()=> {
           this._refresh$.next();

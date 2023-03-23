@@ -33,7 +33,6 @@ export class ProductCreateComponent implements OnInit {
 
   createAddForm(){
     this.addForm = this.fb.group({
-      
       provider: ['', [Validators.required]],
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -47,15 +46,13 @@ export class ProductCreateComponent implements OnInit {
   getProviders(){
     this.providerDataService.getProviders()
     .subscribe( data => this.providers = data)
-    console.log(this.providers)
   }
 
   addProvider(){
     if(this.addForm.valid){
-      const value = this.addForm.value;
-      console.log(value);
     this.productDataService.createProduct(this.addForm.value)
-    .subscribe(newProduct => {
+    .subscribe(res => {
+      console.log(res);
       this._snackBar.open("Producto Agregado correctamente!", "Cerrar", {
         duration: this.durationInSeconds * 1000,
       });

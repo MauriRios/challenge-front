@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
@@ -27,13 +28,17 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
   customers: Customer[] = [];
   isChecked: boolean;
   customerId: number;
+  durationInSeconds = 5;
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private customerDataService : CustomerDataService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
+    ) {
 
   }
 
@@ -68,7 +73,12 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   toggleCustomer(customerId: number, customerStatus: boolean) {
     this.customerDataService.toggleCustomer(customerId, customerStatus)
-    .subscribe((response) => {
+    .subscribe((res) => { 
+      console.log(res);
+      this._snackBar.open(res.message , "Cerrar", {
+        duration: this.durationInSeconds * 1000,
+        
+      });
     });
   }
 

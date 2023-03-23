@@ -39,20 +39,19 @@ export class CustomerCreateComponent implements OnInit {
   addCustomer(){
     if(this.addForm.valid){
     this.customerDataService.createCustomer(this.addForm.value)
-    .subscribe(newCustomer => {
-      this._snackBar.open("Cliente Agregado correctamente!", "Cerrar", {
-        duration: this.durationInSeconds * 1000,
-      });
-      });
-    } else {
-      this._snackBar.open("Error! Faltan datos del Cliente", "Cerrar", {
-        duration: this.durationInSeconds * 1000,
-      });
-      this.addForm.markAllAsTouched();
-    }
-  }
-
-
+    .subscribe(res => {
+        console.log(res);
+        this._snackBar.open("Cliente Agregado correctamente!", "Cerrar", {
+          duration: this.durationInSeconds * 1000,
+        }); })
+        } else {
+          this._snackBar.open("Error! Faltan datos del Cliente", "Cerrar", {
+            duration: this.durationInSeconds * 1000,
+          });
+          this.addForm.markAllAsTouched();
+        }
+      }
+    
     //Form getters
     get customerNameField(){
       return this.addForm.get('name')

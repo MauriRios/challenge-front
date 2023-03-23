@@ -1,3 +1,4 @@
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +13,7 @@ import { CustomerDataService } from 'src/app/services/customer-data.service';
 export class CustomerEditComponent implements OnInit {
 
   customer: Customer = new Customer();
+  response:any;
   editForm!: FormGroup;
   durationInSeconds = 5;
 
@@ -32,7 +34,6 @@ export class CustomerEditComponent implements OnInit {
     this.customerDataService.getCustomerById(+id!).subscribe(
       data => {
         this.customer = data;
-
       }
     );
   }
@@ -54,11 +55,12 @@ export class CustomerEditComponent implements OnInit {
     this.editForm.value.id = id;
     if(this.editForm.valid){
     this.customerDataService.updateCustomer(this.editForm.value.id, this.editForm.value)
-      .subscribe(() => {
+      .subscribe((res) => {
+        console.log(res);
         this._snackBar.open("Cliente editado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });
-        this.ngOnInit();});
+      });
       } else {
         this._snackBar.open("Error, Faltan datos del cliente", "Cerrar", {
           duration: this.durationInSeconds * 1000,

@@ -38,8 +38,8 @@ export class ProductDataService {
       })
     );
   }
-  public deleteProduct(id: number): Observable<Product> {
-    return this.http.delete<Product>(environment.URL + 'producto/borrar/' + id)
+  public deleteProduct(id: number): Observable<any> {
+    return this.http.delete<any>(environment.URL + 'producto/borrar/' + id)
     .pipe(
       tap(()=> {
           this._refresh$.next();

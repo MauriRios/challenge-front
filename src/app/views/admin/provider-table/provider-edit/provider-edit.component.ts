@@ -53,16 +53,13 @@ export class ProviderEditComponent implements OnInit {
     let id = localStorage.getItem('idProvider');
     this.editForm.value.id = id;
     if(this.editForm.valid){
-      const value = this.editForm.value;
-      console.log(value);
-    console.log(this.editForm.value)
     this.providerDataService.updateProvider(this.editForm.value.id, this.editForm.value)
-      .subscribe((results) => {
+      .subscribe(res => {
+        console.log(res);
         this._snackBar.open("Proveedor editado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });
-        console.log(this.editForm);
-        this.ngOnInit();});
+      });
       } else {
         this._snackBar.open("Error, Faltan datos del proveedor", "Cerrar", {
           duration: this.durationInSeconds * 1000,

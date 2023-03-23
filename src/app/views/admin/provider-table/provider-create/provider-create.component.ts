@@ -38,10 +38,9 @@ export class ProviderCreateComponent implements OnInit {
 
   addProvider(){
     if(this.addForm.valid){
-      const value = this.addForm.value;
-      console.log(value);
     this.providerDataService.createProvider(this.addForm.value)
-    .subscribe(newProvider => {
+    .subscribe(res => {
+      console.log(res);
       this._snackBar.open("Proveedor Agregado correctamente!", "Cerrar", {
         duration: this.durationInSeconds * 1000,
       });

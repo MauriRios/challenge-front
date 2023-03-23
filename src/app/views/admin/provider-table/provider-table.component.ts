@@ -57,8 +57,8 @@ export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   toggleProvider(providerId: number, providerStatus: boolean) {
     this.providerDataService.toggleProvider(providerId, providerStatus)
-    .subscribe((response) => {
-      console.log(response);
+    .subscribe(res => {
+      console.log(res);
     });
   }
 

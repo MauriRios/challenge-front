@@ -25,14 +25,14 @@ export class ProviderDeleteComponent implements OnInit {
     this.providerDataService.getProviderById(+id!).subscribe(
       data => {
         this.provider = data;
-        console.log(data);
       }
     );
   }
 
   deleteProvider():void{
     this.providerDataService.deleteProvider(this.provider.id).subscribe(
-      data => {
+      res => {
+        console.log(res);
         this._snackBar.open("Proveedor Eliminado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });

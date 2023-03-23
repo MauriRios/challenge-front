@@ -33,6 +33,7 @@ export class CustomerDeleteComponent implements OnInit {
   deleteCustomer():void{
     this.customerDataService.deleteCustomer(this.customer.id).subscribe(
       data => {
+        console.log(data);
         this._snackBar.open("Cliente Eliminado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });

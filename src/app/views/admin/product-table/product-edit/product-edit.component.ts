@@ -57,24 +57,24 @@ export class ProductEditComponent implements OnInit {
 
   getProviders(){
     this.providerDataService.getProviders()
-    .subscribe( data => this.providers = data)
-    console.log(this.providers)
+    .subscribe( 
+      data => this.providers = data,
+      )
+    
   }
 
   updateProduct(){
     let id = localStorage.getItem('idProduct');
     this.editForm.value.id = id;
     if(this.editForm.valid){
-      const value = this.editForm.value;
-      console.log(value);
-    console.log(this.editForm.value)
     this.productDataService.updateProduct(this.editForm.value.id, this.editForm.value)
-      .subscribe((results) => {
+      .subscribe((res) => {
+        console.log(res);
         this._snackBar.open("Producto editado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });
         console.log(this.editForm);
-        this.ngOnInit();});
+      });
       } else {
         this._snackBar.open("Error, Faltan datos del Producto", "Cerrar", {
           duration: this.durationInSeconds * 1000,

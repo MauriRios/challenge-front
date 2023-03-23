@@ -25,14 +25,14 @@ export class ProductDeleteComponent implements OnInit {
     this.productDataService.getProductById(+id!).subscribe(
       data => {
         this.product = data;
-        console.log(data);
       }
     );
   }
 
   deleteProduct():void{
     this.productDataService.deleteProduct(this.product.id).subscribe(
-      data => {
+      res => {
+        console.log(res);
         this._snackBar.open("Producto Eliminado correctamente!", "Cerrar", {
           duration: this.durationInSeconds * 1000,
         });

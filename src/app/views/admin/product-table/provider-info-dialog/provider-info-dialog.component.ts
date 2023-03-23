@@ -24,7 +24,6 @@ export class ProviderInfoDialogComponent implements OnInit {
     this.providerDataService.getProviderById(+id).subscribe(
       data => { 
         this.provider = data;  
-        console.log(data)    
       });
   }
 
