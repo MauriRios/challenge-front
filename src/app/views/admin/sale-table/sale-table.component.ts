@@ -10,6 +10,7 @@ import { SaleDTO } from 'src/app/models/saleDTO.model';
 import { SaleDataService } from 'src/app/services/sale-data.service';
 import { SaleCreateComponent } from './sale-create/sale-create.component';
 import { SaleListDialogComponent } from './sale-list-dialog/sale-list-dialog.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sale-table',
@@ -20,6 +21,8 @@ export class SaleTableComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  subscription!: Subscription; 
 
   orderDetail: OrderDetail[]=[];
   sale: SaleDTO[];
@@ -35,6 +38,10 @@ export class SaleTableComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.getOrderDetail();
+
+    this.subscription = this.saleDataService.refresh$.subscribe(() => {
+      this.getOrderDetail();
+    })
   }
 
   ngAfterViewInit(): void {
@@ -43,20 +50,19 @@ export class SaleTableComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
 
   getOrderDetail(): void {
     this.saleDataService.getOrders()
       .subscribe(orderDetail => {
         this.orderDetail = orderDetail;
-        
         const sale = this.orderDetail.map(data => data.sale);
-
         this.sale = sale;
-
         this.dataSource.data = orderDetail;
         this.dataSource.paginator! = this.paginator;
         this.dataSource.sort! = this.sort;
-        console.log(orderDetail)
       });
       
   }

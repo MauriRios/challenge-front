@@ -37,7 +37,6 @@ export class ProductTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private productDataService : ProductDataService,
-    private providerDataService : ProviderDataService,
     public dialog: MatDialog
     ) {
   }

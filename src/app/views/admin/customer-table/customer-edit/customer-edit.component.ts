@@ -13,7 +13,6 @@ import { CustomerDataService } from 'src/app/services/customer-data.service';
 export class CustomerEditComponent implements OnInit {
 
   customer: Customer = new Customer();
-  response:any;
   editForm!: FormGroup;
   durationInSeconds = 5;
 

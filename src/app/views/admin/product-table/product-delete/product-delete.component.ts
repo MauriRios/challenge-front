@@ -12,6 +12,7 @@ export class ProductDeleteComponent implements OnInit {
 
   product: Product = new Product();
   durationInSeconds = 5;
+  
   constructor(private productDataService : ProductDataService,
               private _snackBar: MatSnackBar
               ) { }
