@@ -41,7 +41,6 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
     }
 
     //TODO dar estilo a los inputs de angular material
-    //TODO 
   
     ngOnInit(): void {
       this.getProviders();
@@ -54,15 +53,6 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
         customer: ['', [Validators.required]],
         products: this.fb.array([]),
       });
-    }
-
-    createSaleForm(){
-      this.createSale = this.fb.group({
-        providerId: this.createForm.get('provider').value.id,
-        customerId: this.createForm.get('customer').value.id,
-        products: this.createForm.get('products').value,
-      })
-      console.log(this.createSale.value)
     }
   
     providerSave() {
