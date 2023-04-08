@@ -28,8 +28,7 @@ export class SaleByDateComponent implements OnInit {
     const dateObject = new Date(formattedDate);
     this.saleDataService.findSaleByDate(dateObject)
       .subscribe(res => {
-        this.sales = res,
-        console.log(res)
+        this.sales = res
       });
       
       

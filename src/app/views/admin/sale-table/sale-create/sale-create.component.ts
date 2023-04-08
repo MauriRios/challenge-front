@@ -38,7 +38,7 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
     ) {
       this.createAddForm();
     }
-    //TODO
+
     //TODO dar estilo a los inputs de angular material
     //TODO no se tiene que poder ir al siguiente step sin elegir el anterior
   
@@ -57,11 +57,10 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
   
     providerSave() {
       this.selectedProvider = this.createForm.get('provider').value;
-      console.log(this.selectedProvider);
     }
+
     customerSave() {
       this.selectedCustomer = this.createForm.get('customer').value;
-      console.log(this.selectedProvider);
     }
 
     addToCart(newProduct: ProductSaleDTO) {
@@ -78,8 +77,6 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
         let existingProduct = this.createForm.value.products[index];
         existingProduct.quantity += newProduct.quantity;
       }
-      
-      console.log(this.createForm.value);
     }
     
     upQuantity(product : ProductSaleDTO): void{
@@ -97,7 +94,6 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
     getProviders() {
       this.providerDataService.getProviders().subscribe((data) => {
         this.providers = data.filter((data) => data.productList.length > 0);
-        console.log(this.providers);
       });
     }
   
@@ -120,7 +116,6 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
           this._snackBar.open("Venta realizada correctamente!", "Cerrar", {
             duration: this.durationInSeconds * 1000
           });
-          console.log(res);
         });
       } else {
         this._snackBar.open("Error! Faltan datos para la venta", "Cerrar", {
@@ -129,6 +124,7 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
         this.createForm.markAllAsTouched();
       }
     }
+    
     //Form getters
     get providerField(){
       return this.createForm.get('provider')
