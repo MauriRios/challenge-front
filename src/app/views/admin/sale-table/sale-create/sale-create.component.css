@@ -25,20 +25,6 @@
   margin-bottom: 10px;
 
 }
-button:disabled {
-  border: solid 1px gray
-}
-
-input[type="number"] {
-    margin: 0;
-    text-align: center;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
--webkit-appearance: none;
-margin: 0;
-}
 
 .button[type="send"]{
   display: flex;

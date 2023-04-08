@@ -83,7 +83,10 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   openDialog(customer: Customer): void {
-    const dialogRef = this.dialog.open(PurchasesDialogComponent);
+    const dialogRef = this.dialog.open(PurchasesDialogComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
     localStorage.setItem("idCustomer", customer.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idCustomer");
@@ -93,7 +96,8 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   openDialogEdit(customer: Customer): void {
     const dialogRef = this.dialog.open(CustomerEditComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     localStorage.setItem("idCustomer", customer.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -105,7 +109,8 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   openDialogDelete(customer: Customer): void {
     const dialogRef = this.dialog.open(CustomerDeleteComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     localStorage.setItem("idCustomer", customer.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -116,7 +121,8 @@ export class CustomerTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(CustomerCreateComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idCustomer");

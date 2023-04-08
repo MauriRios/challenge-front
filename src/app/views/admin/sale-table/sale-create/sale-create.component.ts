@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Customer } from 'src/app/models/customer.model';
 import { ProductSaleDTO } from 'src/app/models/productSaleDTO.model';
 import { Provider } from 'src/app/models/provider.model';
 import { CustomerDataService } from 'src/app/services/customer-data.service';
-import { ProductDataService } from 'src/app/services/product-data.service';
 import { ProviderDataService } from 'src/app/services/provider-data.service';
 import { SaleDataService } from 'src/app/services/sale-data.service';
 
@@ -39,8 +38,9 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
     ) {
       this.createAddForm();
     }
-
+    //TODO
     //TODO dar estilo a los inputs de angular material
+    //TODO no se tiene que poder ir al siguiente step sin elegir el anterior
   
     ngOnInit(): void {
       this.getProviders();

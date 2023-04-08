@@ -43,3 +43,15 @@ mat-form-field{
     justify-content: end;
 }
 
+/* inputs number without styles*/
+
+input[type="number"] {
+    margin: 0;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}

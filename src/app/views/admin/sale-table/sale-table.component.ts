@@ -68,7 +68,10 @@ export class SaleTableComponent implements AfterViewInit {
   }
 
   openDialog(sale: SaleDTO): void {  
-    const dialogRef = this.dialog.open(SaleListDialogComponent);
+    const dialogRef = this.dialog.open(SaleListDialogComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
     localStorage.setItem("idSale", sale.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idSale");
@@ -79,7 +82,8 @@ export class SaleTableComponent implements AfterViewInit {
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(SaleCreateComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idSale");

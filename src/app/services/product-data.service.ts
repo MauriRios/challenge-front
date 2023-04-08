@@ -21,6 +21,11 @@ export class ProductDataService {
     return this.http.get<Product>(environment.URL + 'producto/traer/'+id);
   }
 
+  public getProductsByLowStock(stock: number): Observable<Product[]> {
+    const query = `producto/lowStock?stock=${stock}`;
+    return this.http.get<Product[]>(environment.URL + query)
+  }
+
   public createProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(environment.URL + 'producto/crear', product)
     .pipe(

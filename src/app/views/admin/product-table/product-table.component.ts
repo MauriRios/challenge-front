@@ -13,6 +13,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { ProductDeleteComponent } from './product-delete/product-delete.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProviderInfoDialogComponent } from './provider-info-dialog/provider-info-dialog.component';
+import { ProductLowStockComponent } from './product-low-stock/product-low-stock.component';
 
 @Component({
   selector: 'app-product-table',
@@ -77,7 +78,10 @@ export class ProductTableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openDialog(productProviderDTO: ProductProviderDTO): void {
-    const dialogRef = this.dialog.open(ProviderInfoDialogComponent);
+    const dialogRef = this.dialog.open(ProviderInfoDialogComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
     console.log(productProviderDTO)
     localStorage.setItem("idProvider", productProviderDTO.provideId.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -89,7 +93,8 @@ export class ProductTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialogEdit(product: Product): void {
     const dialogRef = this.dialog.open(ProductEditComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     localStorage.setItem("idProduct", product.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -101,7 +106,8 @@ export class ProductTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialogDelete(product: Product): void {
     const dialogRef = this.dialog.open(ProductDeleteComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     localStorage.setItem("idProduct", product.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -113,10 +119,22 @@ export class ProductTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(ProductCreateComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idProvider");
+      console.log('The dialog was closed');
+    });
+    
+  }
+
+  openLowStock(){
+    const dialogRef = this.dialog.open(ProductLowStockComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
     

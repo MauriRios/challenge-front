@@ -1,0 +1,44 @@
+<mat-dialog-content class="mat-typography">
+    <h3><b>Buscar Productos con bajo Stock</b></h3>
+<!-- 
+    <div >
+        <input  type="number" [(ngModel)]="sort"><button mat-icon-button (click)="getProducts()"><mat-icon>search</mat-icon></button>
+    </div> -->
+    <mat-form-field class="example-form-field">
+        <mat-label>Stock mínimo</mat-label>
+        <input matInput type="number" [(ngModel)]="sort">
+        <button *ngIf="sort" matSuffix mat-icon-button aria-label="Buscar" (click)="getProducts()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <ng-container *ngIf="sortedProducts.length > 0; else noProduct">
+    <div >
+
+        <table matSort (matSortChange)="sortData($event)" *ngIf="sortedProducts.length > 0">
+            <tr>
+                <th mat-sort-header="id">id</th>
+                <th mat-sort-header="name">Nombre</th>
+                <th mat-sort-header="description">Descripción</th>
+                <th mat-sort-header="price">Precio</th>
+                <th mat-sort-header="stock">Stock</th>
+            </tr>
+            
+            <tr *ngFor="let product of sortedData">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.stock}}</td>
+            </tr>
+        </table>
+    </div>
+    </ng-container>
+    
+    <ng-template #noProduct>
+    <p>No Hay Productos relacionados a la búsqueda</p>
+    </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

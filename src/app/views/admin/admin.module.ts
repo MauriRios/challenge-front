@@ -26,6 +26,7 @@ import { CustomerEditComponent } from './customer-table/customer-edit/customer-e
 import { SaleCreateComponent } from './sale-table/sale-create/sale-create.component';
 import { SaleListDialogComponent } from './sale-table/sale-list-dialog/sale-list-dialog.component';
 import { ProviderSalesListComponent } from './provider-table/provider-sales-list/provider-sales-list.component';
+import { ProductLowStockComponent } from './product-table/product-low-stock/product-low-stock.component';
 
 
 
@@ -50,7 +51,8 @@ import { ProviderSalesListComponent } from './provider-table/provider-sales-list
     CustomerEditComponent,
     SaleCreateComponent,
     SaleListDialogComponent,
-    ProviderSalesListComponent
+    ProviderSalesListComponent,
+    ProductLowStockComponent
   ],  
   exports: [
     NavigationComponent

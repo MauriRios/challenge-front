@@ -1,7 +1,7 @@
 <mat-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="createForm">
     <form [formGroup]="createForm">
-      <ng-template matStepLabel>Selecciona un Cliente</ng-template>
+      <ng-template matStepLabel>Seleccione un Cliente</ng-template>
 
       <mat-form-field appearance="fill">
         <mat-label>Cliente</mat-label>
@@ -66,7 +66,7 @@
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
     <div>
-      <button mat-button (click)="stepper.reset()">Eliminar Seleccion</button>
+      <button mat-button (click)="stepper.reset()">Eliminar Selección</button>
       <button mat-button (click)="createSaleRequest()">Comprar</button>
     </div>
   </mat-step>

@@ -73,7 +73,10 @@ export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   openDialog(provider: Provider): void {
-    const dialogRef = this.dialog.open(ProductsListDialogComponent);
+    const dialogRef = this.dialog.open(ProductsListDialogComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idProvider");
@@ -83,7 +86,10 @@ export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   openSalesDialog(provider: Provider): void {
-    const dialogRef = this.dialog.open(ProviderSalesListComponent);
+    const dialogRef = this.dialog.open(ProviderSalesListComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idProvider");
@@ -94,7 +100,8 @@ export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   openDialogEdit(provider: Provider): void {
     const dialogRef = this.dialog.open(ProviderEditComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -106,7 +113,8 @@ export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   openDialogDelete(provider: Provider): void {
     const dialogRef = this.dialog.open(ProviderDeleteComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     localStorage.setItem("idProvider", provider.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
@@ -118,7 +126,8 @@ export class ProviderTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(ProviderCreateComponent, {
-      width: '320px',
+      minWidth: '320px',
+      maxWidth: '640px',
     });
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idProvider");
