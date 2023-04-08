@@ -70,6 +70,9 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
       if (index === -1) {
         // El producto no existe en la lista, así que lo agregamos
         this.createForm.value.products.push(newProduct);
+        this._snackBar.open("Producto agregado correctamente!", "Cerrar", {
+          duration: this.durationInSeconds * 1000
+        });
       } else {
         // El producto ya existe en la lista, así que sumamos las cantidades
         let existingProduct = this.createForm.value.products[index];

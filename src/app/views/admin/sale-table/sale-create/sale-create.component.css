@@ -8,6 +8,9 @@
 .matInput{
   width: 20px;
 }
+.mat-form-field{
+  margin-top: 20px;
+}
 .product-content{
   display: flex;
   flex-direction: column;
