@@ -33,12 +33,11 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
-
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const sharedAngularMaterialModule = [
   MatCardModule,
@@ -75,7 +74,8 @@ const sharedAngularMaterialModule = [
   MatDatepickerModule,
   MatTooltipModule,
   MatSlideToggleModule,
-  MatStepperModule
+  MatStepperModule,
+  MatNativeDateModule
 ];
 
 

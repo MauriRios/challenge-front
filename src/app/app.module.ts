@@ -19,6 +19,7 @@ import { PurchasesDialogComponent } from './views/admin/customer-table/purchases
 import { CustomerTableComponent } from './views/admin/customer-table/customer-table.component';
 import { ProviderTableComponent } from './views/admin/provider-table/provider-table.component';
 import { ViewsModule } from './views/views.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ViewsModule } from './views/views.module';
     AppRoutingModule,
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,6 +6,7 @@ import { OrderDetail } from '../models/orderDetail.model';
 import { Sale } from '../models/sale.model';
 import { SaleDTO } from '../models/saleDTO.model';
 import { createSale } from '../models/createSale.model';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,16 @@ export class SaleDataService {
 
   public getOrders(): Observable<OrderDetail[]> {
     return this.http.get<OrderDetail[]>(environment.URL + 'venta/ordenes');
+  }
+
+  public findSaleByDate(date: Date): Observable<SaleDTO[]> {
+    const params = { date: date.toISOString().substring(0, 10) };
+    return this.http.get<SaleDTO[]>(environment.URL + "venta/date", { params });
+  }
+  
+  public findSaleByDateFromEvent(event: MatDatepickerInputEvent<Date>): Observable<SaleDTO[]> {
+    const selectedDate = event.value;
+    return this.findSaleByDate(selectedDate);
   }
 
   public createSale(saleDTO: createSale): Observable<SaleDTO> {

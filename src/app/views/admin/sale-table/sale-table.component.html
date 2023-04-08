@@ -23,7 +23,8 @@
     </ng-container>
 
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha <button mat-icon-button matTooltip="Buscar venta por fecha" (click)="openSaleByDateDialog()">
+        <mat-icon >search</mat-icon></button></th>
       <td mat-cell *matCellDef="let row">{{row.sale.date}}</td>
     </ng-container>
 

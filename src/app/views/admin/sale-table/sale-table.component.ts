@@ -11,6 +11,7 @@ import { SaleDataService } from 'src/app/services/sale-data.service';
 import { SaleCreateComponent } from './sale-create/sale-create.component';
 import { SaleListDialogComponent } from './sale-list-dialog/sale-list-dialog.component';
 import { Subscription } from 'rxjs';
+import { SaleByDateComponent } from './sale-by-date/sale-by-date.component';
 
 @Component({
   selector: 'app-sale-table',
@@ -75,6 +76,16 @@ export class SaleTableComponent implements AfterViewInit {
     localStorage.setItem("idSale", sale.id!.toString());
     dialogRef.afterClosed().subscribe(result => {
       localStorage.removeItem("idSale");
+      console.log('The dialog was closed');
+    });
+  }
+
+  openSaleByDateDialog(): void {  
+    const dialogRef = this.dialog.open(SaleByDateComponent, {
+      minWidth: '320px',
+      maxWidth: '640px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }

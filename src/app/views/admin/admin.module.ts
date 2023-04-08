@@ -27,6 +27,7 @@ import { SaleCreateComponent } from './sale-table/sale-create/sale-create.compon
 import { SaleListDialogComponent } from './sale-table/sale-list-dialog/sale-list-dialog.component';
 import { ProviderSalesListComponent } from './provider-table/provider-sales-list/provider-sales-list.component';
 import { ProductLowStockComponent } from './product-table/product-low-stock/product-low-stock.component';
+import { SaleByDateComponent } from './sale-table/sale-by-date/sale-by-date.component';
 
 
 
@@ -52,7 +53,8 @@ import { ProductLowStockComponent } from './product-table/product-low-stock/prod
     SaleCreateComponent,
     SaleListDialogComponent,
     ProviderSalesListComponent,
-    ProductLowStockComponent
+    ProductLowStockComponent,
+    SaleByDateComponent
   ],  
   exports: [
     NavigationComponent
