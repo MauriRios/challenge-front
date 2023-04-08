@@ -1,6 +1,17 @@
+
+.mat-dialog-content{
+    margin-top: 20px;
+}
+h2{
+    margin-top: 5px;
+}
 h3{
     display: flex;
     justify-content: center;
     font-weight: 800;
     margin-top: 20px;
+}
+
+hr{
+    margin: 20px 0 20px 0;
 }

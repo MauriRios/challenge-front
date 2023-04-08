@@ -1,7 +1,42 @@
 <mat-form-field appearance="fill">
-  <mat-label>Choose a date</mat-label>
-  <input matInput [matDatepicker]="picker" (dateChange)="onDateSelected($event)">
-  <mat-hint>MM/DD/YYYY</mat-hint>
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+    <mat-label>Seleccione una fecha</mat-label>
+    <input matInput [matDatepicker]="picker" (dateChange)="onDateSelected($event)">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+
+<mat-dialog-content class="mat-typography">
+    <div *ngIf="sales?.length > 0; else noSalesBlock">
+      <div *ngFor="let order of sales">
+
+        <h2><b>Detalles de Venta N° {{order.id}}</b></h2>
+            <p><b>Fecha:</b> {{ order.date }}</p>
+            <p><b>Cantidad total de productos:</b> {{ order.quantity }}</p>
+            <p><b>Precio Total:</b> {{ order.totalPrice }}</p>
+        <h3><i>Productos comprados</i></h3>
+    <div>
+        <table>
+            <tr>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            </tr>
+             <tr *ngFor="let product of order.products">
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+            </tr>
+        </table>
+        </div>
+        <hr>
+    </div>
+    </div>
+    <ng-template #noSalesBlock>
+        <p>Dia seleccionado sin Ventas</p>
+    </ng-template>
+</mat-dialog-content>
