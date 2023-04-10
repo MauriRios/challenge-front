@@ -32,7 +32,7 @@ export class ProviderCreateComponent implements OnInit {
     this.addForm = this.fb.group({
       providerName: ['', [Validators.required]],
       providerLastName: ['', [Validators.required]],
-      cuit: ['', Validators.required, Validators.pattern(this.cuitPattern)],
+      cuit: ['', [Validators.required, Validators.pattern(this.cuitPattern)]],
       phone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       address: ['', [Validators.required] ],
     })

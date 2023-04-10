@@ -32,12 +32,11 @@ export class CustomerCreateComponent implements OnInit {
     this.addForm = this.fb.group({
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      dni: ['', Validators.required, Validators.pattern(this.dniPattern)],
+      dni: ['', [Validators.required, Validators.pattern(this.dniPattern)]],
       phone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       address: ['', [Validators.required] ],
-    })
-
-  }
+    });
+}
 
   addCustomer(){
     if(this.addForm.valid){
