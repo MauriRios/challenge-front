@@ -14,6 +14,9 @@ export class ProviderCreateComponent implements OnInit {
   provider: Provider = new Provider();
   durationInSeconds = 5;
   addForm: FormGroup;
+  phonePattern = /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/ ;
+  cuitPattern = /^\d{11}$/;
+
   
   constructor(private providerDataService : ProviderDataService,
               private fb: FormBuilder,
@@ -29,8 +32,8 @@ export class ProviderCreateComponent implements OnInit {
     this.addForm = this.fb.group({
       providerName: ['', [Validators.required]],
       providerLastName: ['', [Validators.required]],
-      cuit: ['', Validators.required],
-      phone: ['', [Validators.required]],
+      cuit: ['', Validators.required, Validators.pattern(this.cuitPattern)],
+      phone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       address: ['', [Validators.required] ],
     })
 

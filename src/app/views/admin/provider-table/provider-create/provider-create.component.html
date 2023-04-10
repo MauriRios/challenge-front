@@ -28,7 +28,10 @@
     </mat-form-field>
     <div  *ngIf="cuitField!.errors && (cuitField!.dirty || cuitField!.touched)">
         <div class="error mb-4" *ngIf="cuitField!.hasError('required')">
-          * El campo CUIT es requerido
+          * El campo CUIT es requerido.
+        </div>
+        <div class="error mb-4" *ngIf="cuitField!.hasError('pattern')">
+            * El cuit tiene un formato invalido, recuerde solo ingrese los números.
         </div>
     </div>
 
@@ -39,6 +42,9 @@
     <div  *ngIf="phoneField!.errors && (phoneField!.dirty || phoneField!.touched)">
         <div class="error mb-4" *ngIf="phoneField!.hasError('required')">
           * El Teléfono es requerido
+        </div>
+        <div class="error mb-4" *ngIf="phoneField!.hasError('pattern')">
+            * El Teléfono es invalido. Recuerde agregar el código de area.
         </div>
     </div>
 

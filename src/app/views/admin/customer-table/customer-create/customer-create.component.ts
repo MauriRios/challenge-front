@@ -14,6 +14,9 @@ export class CustomerCreateComponent implements OnInit {
   customer: Customer = new Customer();
   durationInSeconds = 5;
   addForm: FormGroup;
+  phonePattern = /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/ ;
+  dniPattern = /^\d{8}(?:[-\s]\d{4})?$/;
+
   
   constructor(private customerDataService : CustomerDataService,
               private fb: FormBuilder,
@@ -29,8 +32,8 @@ export class CustomerCreateComponent implements OnInit {
     this.addForm = this.fb.group({
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      dni: ['', Validators.required],
-      phone: ['', [Validators.required]],
+      dni: ['', Validators.required, Validators.pattern(this.dniPattern)],
+      phone: ['', [Validators.required, Validators.pattern(this.phonePattern)]],
       address: ['', [Validators.required] ],
     })
 

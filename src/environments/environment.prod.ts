@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  URL: 'https://challenge-production-ed3b.up.railway.app/',
 };

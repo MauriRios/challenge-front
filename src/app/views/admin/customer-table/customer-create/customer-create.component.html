@@ -28,8 +28,12 @@
     </mat-form-field>
     <div  *ngIf="dniField!.errors && (dniField!.dirty || dniField!.touched)">
         <div class="error mb-4" *ngIf="dniField!.hasError('required')">
-          * El campo CUIT es requerido
+          * El campo DNI es requerido.
         </div>
+        <div class="error mb-4" *ngIf="dniField!.hasError('pattern')">
+            * Formato del DNI incorrecto, Recuerde agregar un DNI Argentino.
+        </div>
+
     </div>
 
     <mat-form-field appearance="outline" >
@@ -39,6 +43,9 @@
     <div  *ngIf="phoneField!.errors && (phoneField!.dirty || phoneField!.touched)">
         <div class="error mb-4" *ngIf="phoneField!.hasError('required')">
           * El Teléfono es requerido
+        </div>
+        <div class="error mb-4" *ngIf="phoneField!.hasError('pattern')">
+            * El Teléfono es invalido. Recuerde agregar el código de area.
         </div>
     </div>
 
